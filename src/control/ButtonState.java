@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package data.model;
+package control;
 
 /**
  *
  * @author hoang
  */
-public class NewClass {
-    
+public enum ButtonState {
+    NORMAL,
+    ADD,
+    EDIT,
+    REMOVE,
 }
