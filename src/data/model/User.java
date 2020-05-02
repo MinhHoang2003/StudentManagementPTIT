@@ -11,24 +11,16 @@ package data.model;
  */
 public class User {
 
-    protected int id;
     protected String name;
     protected String email;
     protected String address;
+    protected String dateOfBirth;
 
-    public User(int id, String name, String email, String address) {
-        this.id = id;
+    public User(String name, String email, String address, String dateOfBirth) {
         this.name = name;
         this.email = email;
         this.address = address;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getName() {
@@ -54,6 +46,13 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
-    
-    
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
 }

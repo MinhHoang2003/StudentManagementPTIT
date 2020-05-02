@@ -15,13 +15,13 @@ import java.util.ArrayList;
  */
 public interface TeacherDAO {
 
-    ArrayList<Teacher> getTeachers() throws SQLException;
+    ArrayList<Teacher> getTeachers() throws SQLException, ClassNotFoundException;
 
-    Teacher getTeacherById(int id) throws SQLException;
-    
-    boolean addNewTeacher(Teacher teacher) throws SQLException;
-    
-    boolean updateTeacher(Teacher teacher) throws SQLException;
-    
-    boolean deleteTeacher(int id) throws SQLException;
+    Teacher getTeacherById(int id) throws SQLException, ClassNotFoundException;
+
+    boolean addNewTeacher(Teacher teacher) throws SQLException, ClassNotFoundException;
+
+    boolean updateTeacher(Teacher teacher) throws SQLException, ClassNotFoundException;
+
+    boolean deleteTeacher(int id) throws SQLException, ClassNotFoundException;
 }

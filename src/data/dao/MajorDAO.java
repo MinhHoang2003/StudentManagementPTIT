@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package data.repository;
+package data.dao;
+
+import data.model.Major;
+import java.util.List;
 
 /**
  *
- * @author hoang
+ * @author PhamMinhHoang
  */
-public interface LocalTaskListener<T> {
-
-    public void onTaskDone(T data);
-
-    public void onTaskError(String message);
+public interface MajorDAO {
+    public List<Major> getMajors();
 }

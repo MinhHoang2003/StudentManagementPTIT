@@ -11,21 +11,30 @@ package data.model;
  */
 public class Teacher extends User {
 
+    private int id;
     private String major;
     private String degree;
 
-    public Teacher(int id, String name, String email, String address) {
-        super(id, name, email, address);
-    }
-
-    public Teacher(String major, String degree, int id, String name, String email, String address) {
-        super(id, name, email, address);
+    public Teacher(String major, String degree, int id, String name, String email, String address, String dateOfBirth) {
+        super(name, email, address, dateOfBirth);
         this.major = major;
         this.degree = degree;
     }
-    
-    
 
+    public Teacher(String major, String degree, String name, String email, String address, String dateOfBirth) {
+        super(name, email, address, dateOfBirth);
+        this.major = major;
+        this.degree = degree;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getMajor() {
         return major;
     }
@@ -41,5 +50,4 @@ public class Teacher extends User {
     public void setDegree(String degree) {
         this.degree = degree;
     }
-
 }

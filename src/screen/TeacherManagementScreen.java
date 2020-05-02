@@ -17,13 +17,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hoang
  */
-public class TecherManagementScreen extends javax.swing.JFrame implements TeacherManagementScreenView {
+public class TeacherManagementScreen extends javax.swing.JFrame implements TeacherManagementScreenView {
 
     private ButtonState buttonState = ButtonState.NORMAL;
     private final DefaultTableModel model;
     private final TeacherController controller;
 
-    public TecherManagementScreen(TeacherController teacherController) {
+    public TeacherManagementScreen(TeacherController teacherController) {
         initComponents();
         controller = teacherController;
         model = (DefaultTableModel) jTable1.getModel();
@@ -57,6 +57,9 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
         jLabel4 = new javax.swing.JLabel();
         editTextEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        editTextDateOfBirth = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,11 +68,11 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
 
             },
             new String [] {
-                "Id", "Name", "Address", "Email", "Major", "Degree"
+                "Id", "HoVaTen", "NgaySinh", "DiaChi", "Email", "ChuyenNganh", "HocVi"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -101,7 +104,7 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
             }
         });
 
-        jLabel2.setText("Name :");
+        jLabel2.setText("Ho va ten:");
 
         buttonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/cross.png"))); // NOI18N
         buttonCancel.setText("Cancel");
@@ -120,7 +123,7 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
             }
         });
 
-        jLabel3.setText("Address :");
+        jLabel3.setText("Dia chi: ");
 
         buttonEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/edit.png"))); // NOI18N
         buttonEdit.setText("EDIT");
@@ -142,6 +145,10 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
 
         jLabel5.setText("Major: ");
 
+        jLabel7.setText("Ngay sinh: ");
+
+        jLabel8.setText("* ví dụ: 01/01/2011");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,50 +158,62 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
+                        .addGap(97, 97, 97)
                         .addComponent(buttonAdd)
-                        .addGap(68, 68, 68)
+                        .addGap(28, 28, 28)
                         .addComponent(buttonEdit)
-                        .addGap(63, 63, 63)
+                        .addGap(31, 31, 31)
                         .addComponent(buttonRemove))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(editTextAddress))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(editTextName, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(editTextId, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(101, 101, 101)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(comboBoxMajor, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(editTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
+                                .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
-                                .addComponent(comboBoxDegree, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(buttonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                                .addComponent(editTextDateOfBirth))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel1))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addGap(21, 21, 21)
+                                            .addComponent(editTextId, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(22, 22, 22)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(editTextAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(editTextName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(76, 76, 76)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5))
+                                        .addGap(26, 26, 26)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(comboBoxMajor, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(editTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(comboBoxDegree, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(61, 61, 61)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(buttonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(buttonConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel8)))))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -213,9 +232,10 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
                             .addComponent(jLabel5))
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(editTextAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)
+                                .addComponent(editTextAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel6)
                                 .addComponent(comboBoxDegree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
@@ -223,12 +243,17 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboBoxMajor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonCancel))))
-                .addGap(33, 33, 33)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(editTextDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonAdd)
                     .addComponent(buttonEdit)
                     .addComponent(buttonRemove))
-                .addGap(43, 43, 43))
+                .addGap(12, 12, 12))
         );
 
         pack();
@@ -236,26 +261,20 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
 
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
         Teacher teacher = getData();
-        switch (this.buttonState) {
-            case ADD: {
-                if (teacher != null) {
-//                    model.addRow(Utils.convertTeacherToObject(teacher));
+        if (teacher != null) {
+            switch (this.buttonState) {
+                case ADD: {
                     controller.addNewTeacher(teacher);
+                    break;
                 }
-                break;
-            }
-            case EDIT: {
-                if (teacher != null) {
-//                    model.addRow(Utils.convertTeacherToObject(teacher));
+                case EDIT: {
                     controller.editTeacher(teacher);
+                    break;
                 }
-                break;
-            }
-            case REMOVE: {
-                if (teacher != null) {
+                case REMOVE: {
                     controller.deleteTeacher(teacher.getId());
+                    break;
                 }
-                break;
             }
         }
         changeButtonState(ButtonState.NORMAL);
@@ -281,10 +300,11 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
         int index = jTable1.getSelectedRow();
         int id = (int) model.getValueAt(index, 0);
         String name = (String) model.getValueAt(index, 1);
-        String address = (String) model.getValueAt(index, 2);
-        String email = (String) model.getValueAt(index, 3);
-        String major = (String) model.getValueAt(index, 4);
-        String degree = (String) model.getValueAt(index, 5);
+        String dateOfBirth = (String) model.getValueAt(index, 2);
+        String address = (String) model.getValueAt(index, 3);
+        String email = (String) model.getValueAt(index, 4);
+        String major = (String) model.getValueAt(index, 5);
+        String degree = (String) model.getValueAt(index, 6);
 
         if (name.isEmpty() || address.isEmpty()
                 || email.isEmpty() || major.isEmpty() || degree.isEmpty()) {
@@ -295,6 +315,7 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
         editTextName.setText(name);
         editTextAddress.setText(address);
         editTextEmail.setText(email);
+        editTextDateOfBirth.setText(dateOfBirth);
         setSelectedValue(comboBoxMajor, major);
         setSelectedValue(comboBoxDegree, degree);
     }//GEN-LAST:event_jTable1MouseClicked
@@ -309,6 +330,7 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
     private javax.swing.JComboBox<String> comboBoxDegree;
     private javax.swing.JComboBox<String> comboBoxMajor;
     private javax.swing.JTextField editTextAddress;
+    private javax.swing.JTextField editTextDateOfBirth;
     private javax.swing.JTextField editTextEmail;
     private javax.swing.JTextField editTextId;
     private javax.swing.JTextField editTextName;
@@ -318,6 +340,8 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
@@ -361,16 +385,21 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
     }
 
     private Teacher getData() {
-//        int id = Integer.parseInt(editTextId.getText());
+        String idByString = editTextId.getText();
+        int id = 0;
+        if (!idByString.isEmpty()) {
+            id = Integer.parseInt(idByString);
+        } 
         String name = editTextName.getText();
+        String dateOfBirth = editTextDateOfBirth.getText();
         String email = editTextEmail.getText();
         String address = editTextAddress.getText();
         String major = comboBoxMajor.getSelectedItem().toString();
         String degree = comboBoxDegree.getSelectedItem().toString();
-        if (!name.isEmpty() && !email.isEmpty() && !address.isEmpty()) {
-            return new Teacher(major, degree, 0, name, email, address);
-        } else {
+        if (name.isEmpty()||email.isEmpty()||address.isEmpty()) {
             return null;
+        } else {
+            return new Teacher(major, degree, id, name, email, address, dateOfBirth);
         }
     }
 
@@ -385,14 +414,14 @@ public class TecherManagementScreen extends javax.swing.JFrame implements Teache
     @Override
     public void refreshTable(List<Teacher> teachers) {
         model.setRowCount(0);
-        for (Teacher teacher : teachers) {
+        System.out.println("Refresh table " + teachers.size());
+        teachers.forEach((teacher) -> {
             model.addRow(Utils.convertTeacherToObject(teacher));
-        }
+        });
     }
 
     @Override
     public void refreshError(String message) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.err.println("Error when refresh table " + message);
     }
-
 }

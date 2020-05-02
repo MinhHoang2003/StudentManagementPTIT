@@ -7,16 +7,11 @@ package control;
 
 import data.dao.TeacherDAO;
 import data.model.Teacher;
-import data.repository.ITeacherRepository;
-import data.repository.LocalTaskListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.SwingWorker;
 import screen.TeacherManagementScreenView;
-import screen.TecherManagementScreen;
+import screen.TeacherManagementScreen;
 
 /**
  *
@@ -29,7 +24,7 @@ public class TeacherController {
 
     public TeacherController(TeacherDAO teacherDAO) {
         this.teacherDAO = teacherDAO;
-        view = new TecherManagementScreen(this);
+        view = new TeacherManagementScreen(this);
     }
 
     public void show(boolean isVisible) {
