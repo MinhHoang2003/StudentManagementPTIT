@@ -68,7 +68,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements Teach
 
             },
             new String [] {
-                "Id", "HoVaTen", "NgaySinh", "DiaChi", "Email", "ChuyenNganh", "HocVi"
+                "Id", "Ho va ten", "Ngay sinh", "Dia chi", "Email", "Chuyen nganh", "Hoc vi"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -88,7 +88,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements Teach
 
         comboBoxMajor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cong nghe thong tin", "An toan thong tin", "Marketing", "Quan tri kinh doanh", "Dien tu - Vien thong", "Da phuong tien" }));
 
-        jLabel6.setText("Degree: ");
+        jLabel6.setText("Hoc vi: ");
 
         jLabel1.setText("Id :");
 
@@ -97,7 +97,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements Teach
         editTextId.setEditable(false);
 
         buttonConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/check.png"))); // NOI18N
-        buttonConfirm.setText("OK");
+        buttonConfirm.setText("App dung");
         buttonConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonConfirmActionPerformed(evt);
@@ -107,7 +107,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements Teach
         jLabel2.setText("Ho va ten:");
 
         buttonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/cross.png"))); // NOI18N
-        buttonCancel.setText("Cancel");
+        buttonCancel.setText("Huy bo");
         buttonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelActionPerformed(evt);
@@ -115,7 +115,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements Teach
         });
 
         buttonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/more.png"))); // NOI18N
-        buttonAdd.setText("ADD");
+        buttonAdd.setText("Them");
         buttonAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,7 +126,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements Teach
         jLabel3.setText("Dia chi: ");
 
         buttonEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/edit.png"))); // NOI18N
-        buttonEdit.setText("EDIT");
+        buttonEdit.setText("Sua");
         buttonEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditActionPerformed(evt);
@@ -134,7 +134,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements Teach
         });
 
         buttonRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/eraser.png"))); // NOI18N
-        buttonRemove.setText("REMOVE");
+        buttonRemove.setText("Xoa");
         buttonRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveActionPerformed(evt);
@@ -143,7 +143,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements Teach
 
         jLabel4.setText("Emai :");
 
-        jLabel5.setText("Major: ");
+        jLabel5.setText("Chuyen nganh: ");
 
         jLabel7.setText("Ngay sinh: ");
 
@@ -199,21 +199,21 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements Teach
                                             .addComponent(editTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6)
-                                        .addGap(18, 18, 18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(comboBoxDegree, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(61, 61, 61)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(buttonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(buttonConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(buttonConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(buttonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel8)))))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -235,15 +235,15 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements Teach
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel3)
                                 .addComponent(editTextAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel6)
-                                .addComponent(comboBoxDegree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel6)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboBoxMajor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonCancel))))
-                .addGap(23, 23, 23)
+                            .addComponent(buttonCancel))
+                        .addGap(18, 18, 18)
+                        .addComponent(comboBoxDegree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(editTextDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
