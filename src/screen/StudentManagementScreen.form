@@ -73,7 +73,7 @@
                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="buttonCancel" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonConfirm" min="-2" pref="85" max="-2" attributes="0"/>
+                          <Component id="buttonConfirm" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -186,14 +186,14 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="8" rowCount="0">
-                <Column editable="false" title="Id" type="java.lang.Object"/>
-                <Column editable="false" title="HoVaTen" type="java.lang.Object"/>
-                <Column editable="false" title="DiaChi" type="java.lang.Object"/>
-                <Column editable="true" title="NgaySinh" type="java.lang.Object"/>
+                <Column editable="false" title="Ma sinh vien" type="java.lang.Object"/>
+                <Column editable="false" title="Ho va ten" type="java.lang.Object"/>
+                <Column editable="false" title="Dia chi" type="java.lang.Object"/>
+                <Column editable="true" title="Ngay sinh" type="java.lang.Object"/>
                 <Column editable="false" title="Email" type="java.lang.Object"/>
                 <Column editable="true" title="Lop" type="java.lang.Object"/>
-                <Column editable="false" title="ChuyenNganh" type="java.lang.Object"/>
-                <Column editable="false" title="NamNhapHoc" type="java.lang.Object"/>
+                <Column editable="false" title="Chuyen nganh" type="java.lang.Object"/>
+                <Column editable="false" title="Nam nhap hoc" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -303,7 +303,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/asset/check.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="OK"/>
+        <Property name="text" type="java.lang.String" value="Ap dung"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonConfirmActionPerformed"/>
@@ -314,7 +314,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/asset/cross.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Cancel"/>
+        <Property name="text" type="java.lang.String" value="Huy bo"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelActionPerformed"/>
@@ -325,7 +325,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/asset/eraser.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="REMOVE"/>
+        <Property name="text" type="java.lang.String" value="Xoa"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemoveActionPerformed"/>
@@ -336,7 +336,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/asset/edit.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="EDIT"/>
+        <Property name="text" type="java.lang.String" value="Sua"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEditActionPerformed"/>
@@ -347,7 +347,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/asset/more.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="ADD"/>
+        <Property name="text" type="java.lang.String" value="Them"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Default Cursor"/>
         </Property>

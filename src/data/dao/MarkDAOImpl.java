@@ -8,6 +8,7 @@ package data.dao;
 import data.model.ConnectionUtil;
 import data.model.Mark;
 import data.model.Student;
+import data.util.MarkUtil;
 import data.util.StudentTableUtil;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -35,23 +36,26 @@ public class MarkDAOImpl implements MarkDAO {
     public List<Mark> getMarksOfClass(int id) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionUtil.getConnection();
         ArrayList<Mark> marks = new ArrayList<>();
-        String call = "CALL getStudents()";
+        String call = "CALL getMarksOfClass(?)";
         CallableStatement callableStatement = conn.prepareCall(call);
+        callableStatement.setInt(1, id);
         callableStatement.execute();
         ResultSet resultSet = callableStatement.getResultSet();
-        //TODO : need implement
-//        while (resultSet.next()) {
-//            marks.add(new Student(
-//                    resultSet.getInt(StudentTableUtil.COLUMN_MAJOR),
-//                    resultSet.getString(StudentTableUtil.COLUMN_YEAR_STUDY_IN),
-//                    resultSet.getString(StudentTableUtil.COLUMN_CLASS),
-//                    resultSet.getString(StudentTableUtil.COLUMN_ID),
-//                    resultSet.getString(StudentTableUtil.COLUMN_NAME),
-//                    resultSet.getString(StudentTableUtil.COLUMN_EMAIL),
-//                    resultSet.getString(StudentTableUtil.COLUMN_ADDRESS),
-//                    resultSet.getString(StudentTableUtil.COLUMN_DATE_OF_BIRTH)
-//            ));
-//        }
+        while (resultSet.next()) {
+            marks.add(new Mark(
+                    resultSet.getString(MarkUtil.COLUMN_MA_SINH_VIEN),
+                    resultSet.getInt(MarkUtil.COLUMN_MA_LOP),
+                    resultSet.getString(MarkUtil.COLUMN_TEN),
+                    resultSet.getFloat(MarkUtil.COLUMN_CHUYEN_CAN),
+                    resultSet.getFloat(MarkUtil.COLUMN_BAI_TAP),
+                    resultSet.getFloat(MarkUtil.COLUMN_KIEM_TRA),
+                    resultSet.getFloat(MarkUtil.COLUMN_THUC_HANH),
+                    resultSet.getFloat(MarkUtil.COLUMN_THI),
+                    resultSet.getFloat(MarkUtil.COLUMN_TONG_KET),
+                    resultSet.getString(MarkUtil.COLUMN_TONG_KET_BANG_CHU),
+                    resultSet.getString(MarkUtil.COLUMN_KET_QUA)
+            ));
+        }
         conn.close();
         return marks;
     }

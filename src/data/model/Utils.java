@@ -39,6 +39,22 @@ public class Utils {
         };
     }
 
+    public static Object[] convertMarkToObject(int no, Mark mark) {
+        return new Object[]{
+            no,
+            mark.getStudentName(),
+            mark.getStudentId(),
+            mark.getAttendance(),
+            mark.getPracticse(),
+            mark.getProject(),
+            mark.getExamination(),
+            mark.getFinalExamination(),
+            mark.getFinalGrades(),
+            mark.getFinalGradesInChar(),
+            mark.getSummarize()
+        };
+    }
+
     public static HashMap<Integer, String> majors = new HashMap<Integer, String>();
 
     public static void setHashMap(List<Major> majors) {

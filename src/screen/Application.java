@@ -5,10 +5,14 @@
  */
 package screen;
 
+import control.MarkController;
 import control.StudentController;
+import data.dao.CourseDAOImpl;
 import data.dao.MajorDAOImpl;
+import data.dao.MarkDAOImpl;
 import data.dao.StudentDAO;
 import data.dao.StudentDAOImpl;
+import data.dao.SubjectDAOImpl;
 import data.model.Utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,10 +27,11 @@ public class Application {
 //        StudentDAO teacherDAO = StudentDAOImpl.getInstance();
 //        MajorDAOImpl majorDAOImpl = MajorDAOImpl.getInstance();
 //        Utils.setHashMap(majorDAOImpl.majorsCached);
-//        StudentController teacherController = new StudentController(teacherDAO, majorDAOImpl);
-//        teacherController.show(true);
-        System.out.println(splitName("Pham Minh Hoang"));
-
+//        MarkController markController = new MarkController(CourseDAOImpl.getInstance(), MarkDAOImpl.getInstance(), SubjectDAOImpl.getInstance());
+//        markController.show(true);
+        
+        HomeView view = new HomeView();
+        view.setVisible(true);
     }
 
     public static String splitName(String name) {

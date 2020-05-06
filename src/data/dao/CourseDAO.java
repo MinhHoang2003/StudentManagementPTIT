@@ -14,5 +14,5 @@ import java.util.List;
  * @author PhamMinhHoang
  */
 public interface CourseDAO {
-    List<Course> getCourseByTeacher(int id) throws SQLException, ClassNotFoundException;
+    List<Course> getCourseByTeacher(int teacherId, int courseId) throws SQLException, ClassNotFoundException;
 }

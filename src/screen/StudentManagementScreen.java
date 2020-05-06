@@ -9,7 +9,6 @@ import control.ButtonState;
 import control.StudentController;
 import data.model.Major;
 import data.model.Student;
-import data.model.Teacher;
 import data.model.Utils;
 import java.sql.SQLException;
 import java.util.List;
@@ -22,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PhamMinhHoang
  */
-public class StudentManagementScreen extends javax.swing.JFrame implements StudentManagementView {
+public class StudentManagementScreen extends javax.swing.JFrame implements BaseView<Student> {
 
     private ButtonState buttonState = ButtonState.NORMAL;
     private final DefaultTableModel model;
@@ -75,7 +74,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements Stude
 
             },
             new String [] {
-                "Id", "HoVaTen", "DiaChi", "NgaySinh", "Email", "Lop", "ChuyenNganh", "NamNhapHoc"
+                "Ma sinh vien", "Ho va ten", "Dia chi", "Ngay sinh", "Email", "Lop", "Chuyen nganh", "Nam nhap hoc"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -110,7 +109,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements Stude
         jLabel4.setText("Emai :");
 
         buttonConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/check.png"))); // NOI18N
-        buttonConfirm.setText("OK");
+        buttonConfirm.setText("Ap dung");
         buttonConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonConfirmActionPerformed(evt);
@@ -118,7 +117,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements Stude
         });
 
         buttonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/cross.png"))); // NOI18N
-        buttonCancel.setText("Cancel");
+        buttonCancel.setText("Huy bo");
         buttonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelActionPerformed(evt);
@@ -126,7 +125,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements Stude
         });
 
         buttonRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/eraser.png"))); // NOI18N
-        buttonRemove.setText("REMOVE");
+        buttonRemove.setText("Xoa");
         buttonRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveActionPerformed(evt);
@@ -134,7 +133,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements Stude
         });
 
         buttonEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/edit.png"))); // NOI18N
-        buttonEdit.setText("EDIT");
+        buttonEdit.setText("Sua");
         buttonEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditActionPerformed(evt);
@@ -142,7 +141,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements Stude
         });
 
         buttonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/more.png"))); // NOI18N
-        buttonAdd.setText("ADD");
+        buttonAdd.setText("Them");
         buttonAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,7 +200,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements Stude
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonCancel)
-                            .addComponent(buttonConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(buttonConfirm)))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addComponent(buttonAdd)
@@ -417,10 +416,10 @@ public class StudentManagementScreen extends javax.swing.JFrame implements Stude
     }
 
     @Override
-    public void refreshTable(List<Student> students) {
+    public void refreshTable(List<Student> data) {
         model.setRowCount(0);
-        System.out.println("Refresh table " + students.size());
-        students.forEach((student) -> {
+        System.out.println("Refresh table " + data.size());
+        data.forEach((student) -> {
             model.addRow(Utils.convertStudentToObject(student));
         });
     }

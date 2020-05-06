@@ -5,18 +5,18 @@
  */
 package screen;
 
-import data.model.Student;
+import data.model.Mark;
 import java.util.List;
 
 /**
  *
  * @author PhamMinhHoang
  */
-public interface StudentManagementView {
+public interface MarkManagementView extends BaseView<Mark> {
 
-    void setVisible(boolean isVisible);
+    void showSubjectListOfTeacher(List<String> subjects);
 
-    void refreshTable(List<Student> teachers);
+    void showCoursesOfTeacher(List<String> courses);
 
-    void refreshError(String message);
+    void showError(String message);
 }

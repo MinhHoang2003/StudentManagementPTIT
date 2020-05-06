@@ -5,19 +5,18 @@
  */
 package screen;
 
-import data.model.Teacher;
+import data.model.Student;
 import java.util.List;
 
 /**
  *
- * @author hoang
+ * @author PhamMinhHoang
  */
-public interface TeacherManagementScreenView {
-    
+public interface BaseView<T> {
+
     void setVisible(boolean isVisible);
-    
-    void refreshTable(List<Teacher> teachers);
-    
+
+    void refreshTable(List<T> data);
+
     void refreshError(String message);
-    
 }

@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hoang
  */
-public class TeacherManagementScreen extends javax.swing.JFrame implements TeacherManagementScreenView {
+public class TeacherManagementScreen extends javax.swing.JFrame implements BaseView<Teacher> {
 
     private ButtonState buttonState = ButtonState.NORMAL;
     private final DefaultTableModel model;
@@ -97,7 +97,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements Teach
         editTextId.setEditable(false);
 
         buttonConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/check.png"))); // NOI18N
-        buttonConfirm.setText("App dung");
+        buttonConfirm.setText("Ap dung");
         buttonConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonConfirmActionPerformed(evt);
@@ -208,7 +208,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements Teach
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel8)))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,10 +412,10 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements Teach
     }
 
     @Override
-    public void refreshTable(List<Teacher> teachers) {
+    public void refreshTable(List<Teacher> data) {
         model.setRowCount(0);
-        System.out.println("Refresh table " + teachers.size());
-        teachers.forEach((teacher) -> {
+        System.out.println("Refresh table " + data.size());
+        data.forEach((teacher) -> {
             model.addRow(Utils.convertTeacherToObject(teacher));
         });
     }

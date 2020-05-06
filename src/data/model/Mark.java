@@ -12,19 +12,19 @@ package data.model;
 public class Mark {
 
     //masv, malop, chuyencan, baitap, thuchanh, kiemtra, thi, tongket, tongketbangchu, ketqua
-    private int studentId;
+    private String studentId;
     private int classId;
-    private int studentName;
+    private String studentName;
     private float attendance;
     private float project;
     private float examination;
     private float practicse;
     private float finalExamination;
     private float finalGrades;
-    private char finalGradesInChar;
+    private String finalGradesInChar;
     private String summarize;
 
-    public Mark(int studentId, int classId, int studentName, float attendance, float project, float examination, float practicse, float finalExamination, float finalGrades, char finalGradesInChar, String summarize) {
+    public Mark(String studentId, int classId, String studentName, float attendance, float project, float examination, float practicse, float finalExamination, float finalGrades, String finalGradesInChar, String summarize) {
         this.studentId = studentId;
         this.classId = classId;
         this.studentName = studentName;
@@ -38,11 +38,11 @@ public class Mark {
         this.summarize = summarize;
     }
 
-    public int getStudentId() {
+    public String getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
 
@@ -102,11 +102,11 @@ public class Mark {
         this.finalGrades = finalGrades;
     }
 
-    public char getFinalGradesInChar() {
+    public String getFinalGradesInChar() {
         return finalGradesInChar;
     }
 
-    public void setFinalGradesInChar(char finalGradesInChar) {
+    public void setFinalGradesInChar(String finalGradesInChar) {
         this.finalGradesInChar = finalGradesInChar;
     }
 
@@ -118,12 +118,12 @@ public class Mark {
         this.summarize = summarize;
     }
 
-    public int getStudentName() {
+    public String getStudentName() {
         return studentName;
     }
 
-    public void setStudentName(int studentName) {
+    public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
-    
+
 }

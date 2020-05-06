@@ -33,12 +33,13 @@ public class CourseDAOImpl implements CourseDAO {
     }
 
     @Override
-    public List<Course> getCourseByTeacher(int id) throws SQLException, ClassNotFoundException {
+    public List<Course> getCourseByTeacher(int teacherId, int courseId) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionUtil.getConnection();
         ArrayList<Course> courses = new ArrayList<>();
-        String call = "CALL getClassInfoByTeacher(?)";
+        String call = "CALL getClassInfoByTeacher(?,?)";
         CallableStatement callableStatement = conn.prepareCall(call);
-        callableStatement.setInt(1, id);
+        callableStatement.setInt(1, teacherId);
+        callableStatement.setInt(2, courseId);
         callableStatement.execute();
         ResultSet resultSet = callableStatement.getResultSet();
         while (resultSet.next()) {

@@ -10,28 +10,32 @@ import data.model.Teacher;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import javax.swing.SwingWorker;
-import screen.TeacherManagementScreenView;
+import screen.BaseView;
 import screen.TeacherManagementScreen;
 
 /**
  *
  * @author hoang
  */
-public class TeacherController {
+public class TeacherController implements BaseController {
 
     private final TeacherDAO teacherDAO;
-    private final TeacherManagementScreenView view;
+    private final BaseView<Teacher> view;
 
     public TeacherController(TeacherDAO teacherDAO) {
         this.teacherDAO = teacherDAO;
         view = new TeacherManagementScreen(this);
     }
 
+    @Override
     public void show(boolean isVisible) {
         view.setVisible(isVisible);
-        refreshTable();
+        if (isVisible) {
+            refreshTable();
+        }
     }
 
+    @Override
     public void refreshTable() {
         SwingWorker<List<Teacher>, Void> worker = new SwingWorker<List<Teacher>, Void>() {
             @Override

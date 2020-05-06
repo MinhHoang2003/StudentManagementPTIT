@@ -9,7 +9,6 @@ import data.dao.MajorDAOImpl;
 import data.dao.StudentDAO;
 import data.model.Major;
 import data.model.Student;
-import data.model.Utils;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,17 +16,17 @@ import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingWorker;
+import screen.BaseView;
 import screen.StudentManagementScreen;
-import screen.StudentManagementView;
 
 /**
  *
  * @author PhamMinhHoang
  */
-public class StudentController {
+public class StudentController implements BaseController {
 
     private final StudentDAO studentDAO;
-    private final StudentManagementView view;
+    private final BaseView<Student> view;
     private final MajorDAOImpl majorDAO;
 
     public StudentController(StudentDAO studentDAO, MajorDAOImpl majorDAO) {
@@ -36,11 +35,15 @@ public class StudentController {
         this.view = new StudentManagementScreen(this);
     }
 
+    @Override
     public void show(boolean isVisible) {
         view.setVisible(isVisible);
-        refreshTable();
+        if (isVisible) {
+            refreshTable();
+        }
     }
 
+    @Override
     public void refreshTable() {
         SwingWorker<List<Student>, Void> worker = new SwingWorker<List<Student>, Void>() {
             @Override

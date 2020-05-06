@@ -23,7 +23,7 @@ public class SubjectDAOImpl implements SubjectDAO {
 
     private static SubjectDAOImpl instance = null;
 
-    private static SubjectDAOImpl getInstance() {
+    public static SubjectDAOImpl getInstance() {
         if (instance == null) {
             instance = new SubjectDAOImpl();
         }
