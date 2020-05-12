@@ -11,6 +11,9 @@ import data.dao.SubjectDAO;
 import data.model.Course;
 import data.model.Mark;
 import data.model.Subject;
+import data.util.MarkExportExcelUtil;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -127,6 +130,7 @@ public class MarkController implements BaseController {
             protected List<Mark> doInBackground() throws Exception {
                 return markDAO.getMarksOfClass(courseId);
             }
+
             @Override
             protected void done() {
                 try {
@@ -139,6 +143,18 @@ public class MarkController implements BaseController {
             }
         };
         worker.execute();
+    }
+
+    public void exportMarkToExcelFile(String fileOutputPath) {
+        if (!fileOutputPath.toLowerCase().endsWith(".xls")) {
+            fileOutputPath = fileOutputPath + ".xls";
+        }
+        try {
+            MarkExportExcelUtil.exportToExcelFile(fileOutputPath);
+        } catch (IOException | SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(MarkManagementScreen.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
+        }
     }
 
 }

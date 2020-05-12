@@ -7,6 +7,7 @@ package screen;
 
 import control.ButtonState;
 import control.TeacherController;
+import data.model.Major;
 import data.model.Teacher;
 import data.model.Utils;
 import java.util.List;
@@ -68,7 +69,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
 
             },
             new String [] {
-                "Id", "Ho va ten", "Ngay sinh", "Dia chi", "Email", "Chuyen nganh", "Hoc vi"
+                "Id", "Họ và tên", "Ngày sinh", "Địa chỉ", "Email", "Chuyên ngành", "Học vị"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -85,10 +86,13 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         comboBoxMajor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cong nghe thong tin", "An toan thong tin", "Marketing", "Quan tri kinh doanh", "Dien tu - Vien thong", "Da phuong tien" }));
 
-        jLabel6.setText("Hoc vi: ");
+        jLabel6.setText("Học vị:");
 
         jLabel1.setText("Id :");
 
@@ -96,26 +100,29 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
 
         editTextId.setEditable(false);
 
+        buttonConfirm.setBackground(new java.awt.Color(255, 255, 255));
         buttonConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/check.png"))); // NOI18N
-        buttonConfirm.setText("Ap dung");
+        buttonConfirm.setText("Áp dụng");
         buttonConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonConfirmActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Ho va ten:");
+        jLabel2.setText("Họ và tên:");
 
+        buttonCancel.setBackground(new java.awt.Color(255, 255, 255));
         buttonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/cross.png"))); // NOI18N
-        buttonCancel.setText("Huy bo");
+        buttonCancel.setText("Hủy bỏ");
         buttonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelActionPerformed(evt);
             }
         });
 
+        buttonAdd.setBackground(new java.awt.Color(255, 255, 255));
         buttonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/more.png"))); // NOI18N
-        buttonAdd.setText("Them");
+        buttonAdd.setText("Thêm");
         buttonAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,18 +130,20 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
             }
         });
 
-        jLabel3.setText("Dia chi: ");
+        jLabel3.setText("Địa chỉ:");
 
+        buttonEdit.setBackground(new java.awt.Color(255, 255, 255));
         buttonEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/edit.png"))); // NOI18N
-        buttonEdit.setText("Sua");
+        buttonEdit.setText("Sửa");
         buttonEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditActionPerformed(evt);
             }
         });
 
+        buttonRemove.setBackground(new java.awt.Color(255, 255, 255));
         buttonRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/eraser.png"))); // NOI18N
-        buttonRemove.setText("Xoa");
+        buttonRemove.setText("Xóa");
         buttonRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveActionPerformed(evt);
@@ -143,9 +152,9 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
 
         jLabel4.setText("Emai :");
 
-        jLabel5.setText("Chuyen nganh: ");
+        jLabel5.setText("Chuyên ngành:");
 
-        jLabel7.setText("Ngay sinh: ");
+        jLabel7.setText("Ngày sinh:");
 
         jLabel8.setText("* ví dụ: 01/01/2011");
 
@@ -208,7 +217,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel8)))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,19 +396,20 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
     private Teacher getData() {
         String idByString = editTextId.getText();
         int id = 0;
+        Major major = controller.getMajor(comboBoxMajor.getSelectedItem().toString());
+
         if (!idByString.isEmpty()) {
             id = Integer.parseInt(idByString);
-        } 
+        }
         String name = editTextName.getText();
         String dateOfBirth = editTextDateOfBirth.getText();
         String email = editTextEmail.getText();
         String address = editTextAddress.getText();
-        String major = comboBoxMajor.getSelectedItem().toString();
         String degree = comboBoxDegree.getSelectedItem().toString();
-        if (name.isEmpty()||email.isEmpty()||address.isEmpty()) {
+        if (name.isEmpty() || email.isEmpty() || address.isEmpty()) {
             return null;
         } else {
-            return new Teacher(major, degree, id, name, email, address, dateOfBirth);
+            return new Teacher(major.getId(), degree, id, name, email, address, dateOfBirth);
         }
     }
 

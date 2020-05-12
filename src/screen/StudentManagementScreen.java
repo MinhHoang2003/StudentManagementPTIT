@@ -74,7 +74,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
 
             },
             new String [] {
-                "Ma sinh vien", "Ho va ten", "Dia chi", "Ngay sinh", "Email", "Lop", "Chuyen nganh", "Nam nhap hoc"
+                "Mã sinh viên", "Họ và tên", "Địa chỉ", "Ngày sinh", "Email", "Lớp", "Chuyên ngành", "Năm nhập học"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -96,20 +96,20 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
 
         jLabel1.setText("Id :");
 
-        jLabel2.setText("Ho va ten:");
+        jLabel2.setText("Họ và tên:");
 
-        jLabel3.setText("Dia chi: ");
+        jLabel3.setText("Địa chỉ:");
 
-        jLabel7.setText("Ngay sinh: ");
+        jLabel7.setText("Ngày sinh:");
 
-        jLabel6.setText("Nam nhap hoc:");
+        jLabel6.setText("Năm nhập học:");
 
-        jLabel5.setText("Chuyen nganh:");
+        jLabel5.setText("Chuyên ngành:");
 
         jLabel4.setText("Emai :");
 
         buttonConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/check.png"))); // NOI18N
-        buttonConfirm.setText("Ap dung");
+        buttonConfirm.setText("Áp dụng");
         buttonConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonConfirmActionPerformed(evt);
@@ -117,7 +117,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
         });
 
         buttonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/cross.png"))); // NOI18N
-        buttonCancel.setText("Huy bo");
+        buttonCancel.setText("Hủy bỏ");
         buttonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelActionPerformed(evt);
@@ -125,7 +125,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
         });
 
         buttonRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/eraser.png"))); // NOI18N
-        buttonRemove.setText("Xoa");
+        buttonRemove.setText("Xóa");
         buttonRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveActionPerformed(evt);
@@ -133,7 +133,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
         });
 
         buttonEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/edit.png"))); // NOI18N
-        buttonEdit.setText("Sua");
+        buttonEdit.setText("Sửa");
         buttonEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditActionPerformed(evt);
@@ -141,7 +141,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
         });
 
         buttonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/more.png"))); // NOI18N
-        buttonAdd.setText("Them");
+        buttonAdd.setText("Thêm");
         buttonAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +153,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
 
         comboBoxMajor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cong nghe thong tin", "An toan thong tin", "Marketing", "Quan tri kinh doanh", "Dien tu - Vien thong", "Da phuong tien" }));
 
-        jLabel10.setText("Lop: ");
+        jLabel10.setText("Lớp:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

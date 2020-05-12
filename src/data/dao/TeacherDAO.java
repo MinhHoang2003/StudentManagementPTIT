@@ -19,6 +19,8 @@ public interface TeacherDAO {
 
     Teacher getTeacherById(int id) throws SQLException, ClassNotFoundException;
 
+    Teacher getTeacherByEmail(String email) throws SQLException, ClassNotFoundException;
+
     boolean addNewTeacher(Teacher teacher) throws SQLException, ClassNotFoundException;
 
     boolean updateTeacher(Teacher teacher) throws SQLException, ClassNotFoundException;

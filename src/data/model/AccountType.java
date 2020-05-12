@@ -3,19 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package screen;
-
-import java.util.List;
+package data.model;
 
 /**
  *
  * @author PhamMinhHoang
  */
-public interface BaseView<T> {
-
-    void setVisible(boolean isVisible);
-
-    void refreshTable(List<T> data);
-
-    void refreshError(String message);
+public enum AccountType {
+    ADMIN, TEACHER
 }

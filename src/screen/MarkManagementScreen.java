@@ -8,7 +8,14 @@ package screen;
 import control.MarkController;
 import data.model.Mark;
 import data.model.Utils;
+import data.util.MarkExportExcelUtil;
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,9 +24,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MarkManagementScreen extends javax.swing.JFrame implements MarkManagementView {
 
-    public static final String MESSAGE_COURSE_NOT_SELECT = "Hay chon mon hoc truoc";
-    public static final String MESSAGE_LET_SELECT = "Hay chon mot muc";
-    public static final String MESSAGE_SUBJECT_NOT_SELECT = "Chua duoc chon";
+    public static final String MESSAGE_COURSE_NOT_SELECT = "Hãy chọn mộn học trước";
+    public static final String MESSAGE_LET_SELECT = "Hãy chọn một mục";
+    public static final String MESSAGE_SUBJECT_NOT_SELECT = "Chưa được chọn";
 
     private final DefaultTableModel model;
     private final MarkController markController;
@@ -59,9 +66,9 @@ public class MarkManagementScreen extends javax.swing.JFrame implements MarkMana
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Mon hoc: ");
+        jLabel1.setText("Môn học");
 
-        jLabel2.setText("Mon hoc :");
+        jLabel2.setText("Môn học :");
 
         jComboSubjects.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +76,7 @@ public class MarkManagementScreen extends javax.swing.JFrame implements MarkMana
             }
         });
 
-        jLabel3.setText("Lop :");
+        jLabel3.setText("Lớp : ");
 
         jComboClass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,22 +84,29 @@ public class MarkManagementScreen extends javax.swing.JFrame implements MarkMana
             }
         });
 
-        jLabel4.setText("Loc trang thai: ");
+        jLabel4.setText("Lọc trạng thái");
 
-        jComboStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chua duoc chon", "Qua mon", "Khong qua mon" }));
+        jComboStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chưa được chọn", "Qua môn", "Không qua môn" }));
 
-        jButtonGetMark.setText("Lay thong tin");
+        jButtonGetMark.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonGetMark.setText("Lấy  thông tin");
         jButtonGetMark.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGetMarkActionPerformed(evt);
             }
         });
 
-        jButtonExport.setText("Xuat bao cao");
+        jButtonExport.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonExport.setText("Xuất báo cáo");
+        jButtonExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExportActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setText("Qua mon: ");
+        jLabel5.setText("Qua môn:");
 
-        jLabel6.setText("Khong qua mon: ");
+        jLabel6.setText("Không qua môn:");
 
         jLabel7.setText("0");
 
@@ -106,7 +120,7 @@ public class MarkManagementScreen extends javax.swing.JFrame implements MarkMana
 
             },
             new String [] {
-                "No.", "Ten", "Id", "CC", "TH", "BT", "KT", "Thi", "TK(10)", "TK(CH)", "KQ"
+                "No.", "Tên", "Id", "CC", "TH", "BT", "KT", "Thi", "TK(10)", "TK(CH)", "KQ"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -249,6 +263,16 @@ public class MarkManagementScreen extends javax.swing.JFrame implements MarkMana
             jButtonExport.setEnabled(true);
         }
     }//GEN-LAST:event_jComboClassActionPerformed
+
+    private void jButtonExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify a file to save");
+        int userSelection = fileChooser.showSaveDialog(this);
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            String fileOutputPath = fileChooser.getSelectedFile().getAbsolutePath();
+            markController.exportMarkToExcelFile(fileOutputPath);
+        }
+    }//GEN-LAST:event_jButtonExportActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

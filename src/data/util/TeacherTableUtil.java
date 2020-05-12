@@ -16,6 +16,6 @@ public class TeacherTableUtil {
     public static final String COLUMN_DATE_OF_BIRTH = "ngay_sinh";
     public static final String COLUMN_ADDRESS = "dia_chi";
     public static final String COLUMN_EMAIL = "email";
-    public static final String COLUMN_MAJOR = "chuyen_nganh";
+    public static final String COLUMN_MAJOR_ID = "ma_chuyen_nganh";
     public static final String COLUMN_DEGREE = "hoc_vi";
 }

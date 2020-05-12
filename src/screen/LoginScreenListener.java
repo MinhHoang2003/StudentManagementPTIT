@@ -5,17 +5,12 @@
  */
 package screen;
 
-import java.util.List;
-
 /**
  *
  * @author PhamMinhHoang
  */
-public interface BaseView<T> {
+public interface LoginScreenListener {
 
-    void setVisible(boolean isVisible);
+    void onLoginComplete();
 
-    void refreshTable(List<T> data);
-
-    void refreshError(String message);
 }

@@ -5,17 +5,17 @@
  */
 package screen;
 
-import java.util.List;
-
 /**
  *
  * @author PhamMinhHoang
  */
-public interface BaseView<T> {
+public interface HomeViewListener {
 
-    void setVisible(boolean isVisible);
+    void onRequestTeacherManagerScreen();
 
-    void refreshTable(List<T> data);
+    void onRequestStudentManagerScreen();
 
-    void refreshError(String message);
+    void onRequestMarkManagerScreen();
+
+    void onRequestSettingScreen();
 }

@@ -123,14 +123,14 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mon hoc: "/>
+        <Property name="text" type="java.lang.String" value="M&#xf4;n h&#x1ecd;c"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mon hoc :"/>
+        <Property name="text" type="java.lang.String" value="M&#xf4;n h&#x1ecd;c :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboSubjects">
@@ -148,7 +148,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Lop :"/>
+        <Property name="text" type="java.lang.String" value="L&#x1edb;p : "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboClass">
@@ -166,16 +166,16 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Loc trang thai: "/>
+        <Property name="text" type="java.lang.String" value="L&#x1ecd;c tr&#x1ea1;ng th&#xe1;i"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboStatus">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
-            <StringItem index="0" value="Chua duoc chon"/>
-            <StringItem index="1" value="Qua mon"/>
-            <StringItem index="2" value="Khong qua mon"/>
+            <StringItem index="0" value="Ch&#x1b0;a &#x111;&#x1b0;&#x1ee3;c ch&#x1ecd;n"/>
+            <StringItem index="1" value="Qua m&#xf4;n"/>
+            <StringItem index="2" value="Kh&#xf4;ng qua m&#xf4;n"/>
           </StringArray>
         </Property>
       </Properties>
@@ -185,7 +185,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonGetMark">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Lay thong tin"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="L&#x1ea5;y  th&#xf4;ng tin"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGetMarkActionPerformed"/>
@@ -193,17 +196,23 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonExport">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Xuat bao cao"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t b&#xe1;o c&#xe1;o"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExportActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Qua mon: "/>
+        <Property name="text" type="java.lang.String" value="Qua m&#xf4;n:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Khong qua mon: "/>
+        <Property name="text" type="java.lang.String" value="Kh&#xf4;ng qua m&#xf4;n:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
@@ -261,7 +270,7 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="11" rowCount="0">
                     <Column editable="false" title="No." type="java.lang.Object"/>
-                    <Column editable="false" title="Ten" type="java.lang.Object"/>
+                    <Column editable="false" title="T&#xea;n" type="java.lang.Object"/>
                     <Column editable="false" title="Id" type="java.lang.Object"/>
                     <Column editable="false" title="CC" type="java.lang.Object"/>
                     <Column editable="false" title="TH" type="java.lang.Object"/>

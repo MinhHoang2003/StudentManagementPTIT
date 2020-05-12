@@ -186,14 +186,14 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="8" rowCount="0">
-                <Column editable="false" title="Ma sinh vien" type="java.lang.Object"/>
-                <Column editable="false" title="Ho va ten" type="java.lang.Object"/>
-                <Column editable="false" title="Dia chi" type="java.lang.Object"/>
-                <Column editable="true" title="Ngay sinh" type="java.lang.Object"/>
+                <Column editable="false" title="M&#xe3; sinh vi&#xea;n" type="java.lang.Object"/>
+                <Column editable="false" title="H&#x1ecd; v&#xe0; t&#xea;n" type="java.lang.Object"/>
+                <Column editable="false" title="&#x110;&#x1ecb;a ch&#x1ec9;" type="java.lang.Object"/>
+                <Column editable="true" title="Ng&#xe0;y sinh" type="java.lang.Object"/>
                 <Column editable="false" title="Email" type="java.lang.Object"/>
-                <Column editable="true" title="Lop" type="java.lang.Object"/>
-                <Column editable="false" title="Chuyen nganh" type="java.lang.Object"/>
-                <Column editable="false" title="Nam nhap hoc" type="java.lang.Object"/>
+                <Column editable="true" title="L&#x1edb;p" type="java.lang.Object"/>
+                <Column editable="false" title="Chuy&#xea;n ng&#xe0;nh" type="java.lang.Object"/>
+                <Column editable="false" title="N&#x103;m nh&#x1ead;p h&#x1ecd;c" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -262,19 +262,19 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ho va ten:"/>
+        <Property name="text" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="editTextName">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Dia chi: "/>
+        <Property name="text" type="java.lang.String" value="&#x110;&#x1ecb;a ch&#x1ec9;:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ngay sinh: "/>
+        <Property name="text" type="java.lang.String" value="Ng&#xe0;y sinh:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="editTextAddress">
@@ -283,12 +283,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nam nhap hoc:"/>
+        <Property name="text" type="java.lang.String" value="N&#x103;m nh&#x1ead;p h&#x1ecd;c:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Chuyen nganh:"/>
+        <Property name="text" type="java.lang.String" value="Chuy&#xea;n ng&#xe0;nh:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -303,7 +303,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/asset/check.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Ap dung"/>
+        <Property name="text" type="java.lang.String" value="&#xc1;p d&#x1ee5;ng"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonConfirmActionPerformed"/>
@@ -314,7 +314,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/asset/cross.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Huy bo"/>
+        <Property name="text" type="java.lang.String" value="H&#x1ee7;y b&#x1ecf;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelActionPerformed"/>
@@ -325,7 +325,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/asset/eraser.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Xoa"/>
+        <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemoveActionPerformed"/>
@@ -336,7 +336,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/asset/edit.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Sua"/>
+        <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEditActionPerformed"/>
@@ -347,7 +347,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/asset/more.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Them"/>
+        <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Default Cursor"/>
         </Property>
@@ -382,7 +382,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Lop: "/>
+        <Property name="text" type="java.lang.String" value="L&#x1edb;p:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="editTextClassName">

@@ -5,10 +5,15 @@
  */
 package control;
 
+import data.dao.MajorDAOImpl;
 import data.dao.TeacherDAO;
+import data.model.Major;
 import data.model.Teacher;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingWorker;
 import screen.BaseView;
 import screen.TeacherManagementScreen;
@@ -20,10 +25,12 @@ import screen.TeacherManagementScreen;
 public class TeacherController implements BaseController {
 
     private final TeacherDAO teacherDAO;
+    private final MajorDAOImpl majorDAO;
     private final BaseView<Teacher> view;
 
-    public TeacherController(TeacherDAO teacherDAO) {
+    public TeacherController(TeacherDAO teacherDAO, MajorDAOImpl majorDAO) {
         this.teacherDAO = teacherDAO;
+        this.majorDAO = majorDAO;
         view = new TeacherManagementScreen(this);
     }
 
@@ -122,4 +129,10 @@ public class TeacherController implements BaseController {
         worker.execute();
     }
 
+
+
+    public Major getMajor(String name) {
+        return majorDAO.getMajorId(name);
+    }
+    
 }

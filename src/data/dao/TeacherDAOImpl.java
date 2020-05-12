@@ -42,7 +42,7 @@ public class TeacherDAOImpl implements TeacherDAO {
         ResultSet resultSet = callableStatement.getResultSet();
         while (resultSet.next()) {
             teachers.add(new Teacher(
-                    resultSet.getString(TeacherTableUtil.COLUMN_MAJOR),
+                    resultSet.getInt(TeacherTableUtil.COLUMN_MAJOR_ID),
                     resultSet.getString(TeacherTableUtil.COLUMN_DEGREE),
                     resultSet.getInt(TeacherTableUtil.COLUMN_ID),
                     resultSet.getString(TeacherTableUtil.COLUMN_NAME),
@@ -66,7 +66,7 @@ public class TeacherDAOImpl implements TeacherDAO {
         ResultSet resultSet = callableStatement.getResultSet();
         while (resultSet.next()) {
             teacher = new Teacher(
-                    resultSet.getString(TeacherTableUtil.COLUMN_MAJOR),
+                    resultSet.getInt(TeacherTableUtil.COLUMN_MAJOR_ID),
                     resultSet.getString(TeacherTableUtil.COLUMN_DEGREE),
                     resultSet.getInt(TeacherTableUtil.COLUMN_ID),
                     resultSet.getString(TeacherTableUtil.COLUMN_NAME),
@@ -88,7 +88,7 @@ public class TeacherDAOImpl implements TeacherDAO {
         callableStatement.setString(TeacherTableUtil.COLUMN_DATE_OF_BIRTH, teacher.getDateOfBirth());
         callableStatement.setString(TeacherTableUtil.COLUMN_ADDRESS, teacher.getAddress());
         callableStatement.setString(TeacherTableUtil.COLUMN_EMAIL, teacher.getEmail());
-        callableStatement.setString(TeacherTableUtil.COLUMN_MAJOR, teacher.getMajor());
+        callableStatement.setInt(TeacherTableUtil.COLUMN_MAJOR_ID, teacher.getMajor());
         callableStatement.setString(TeacherTableUtil.COLUMN_DEGREE, teacher.getDegree());
         int id = callableStatement.executeUpdate();
         System.out.println("On add " + id);
@@ -105,7 +105,7 @@ public class TeacherDAOImpl implements TeacherDAO {
         callableStatement.setString(TeacherTableUtil.COLUMN_DATE_OF_BIRTH, teacher.getDateOfBirth());
         callableStatement.setString(TeacherTableUtil.COLUMN_ADDRESS, teacher.getAddress());
         callableStatement.setString(TeacherTableUtil.COLUMN_EMAIL, teacher.getEmail());
-        callableStatement.setString(TeacherTableUtil.COLUMN_MAJOR, teacher.getMajor());
+        callableStatement.setInt(TeacherTableUtil.COLUMN_MAJOR_ID, teacher.getMajor());
         callableStatement.setString(TeacherTableUtil.COLUMN_DEGREE, teacher.getDegree());
         final boolean result = callableStatement.executeUpdate() > 0;
         conn.close();
@@ -121,6 +121,30 @@ public class TeacherDAOImpl implements TeacherDAO {
         final boolean result = callableStatement.executeUpdate() > 0;
         conn.close();
         return result;
+    }
+
+    @Override
+    public Teacher getTeacherByEmail(String email) throws SQLException, ClassNotFoundException {
+        Connection conn = ConnectionUtil.getConnection();
+        Teacher teacher = null;
+        String call = "CALL getTeacherByEmail(?)";
+        CallableStatement callableStatement = conn.prepareCall(call);
+        callableStatement.setString(1, email);
+        callableStatement.execute();
+        ResultSet resultSet = callableStatement.getResultSet();
+        while (resultSet.next()) {
+            teacher = new Teacher(
+                    resultSet.getInt(TeacherTableUtil.COLUMN_MAJOR_ID),
+                    resultSet.getString(TeacherTableUtil.COLUMN_DEGREE),
+                    resultSet.getInt(TeacherTableUtil.COLUMN_ID),
+                    resultSet.getString(TeacherTableUtil.COLUMN_NAME),
+                    resultSet.getString(TeacherTableUtil.COLUMN_EMAIL),
+                    resultSet.getString(TeacherTableUtil.COLUMN_ADDRESS),
+                    resultSet.getString(TeacherTableUtil.COLUMN_DATE_OF_BIRTH)
+            );
+        }
+        conn.close();
+        return teacher;
     }
 
 }

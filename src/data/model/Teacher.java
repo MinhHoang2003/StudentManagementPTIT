@@ -12,16 +12,17 @@ package data.model;
 public class Teacher extends User {
 
     private int id;
-    private String major;
+    private int major;
     private String degree;
 
-    public Teacher(String major, String degree, int id, String name, String email, String address, String dateOfBirth) {
+    public Teacher(int major, String degree, int id, String name, String email, String address, String dateOfBirth) {
         super(name, email, address, dateOfBirth);
+        this.id = id;
         this.major = major;
         this.degree = degree;
     }
 
-    public Teacher(String major, String degree, String name, String email, String address, String dateOfBirth) {
+    public Teacher(int major, String degree, String name, String email, String address, String dateOfBirth) {
         super(name, email, address, dateOfBirth);
         this.major = major;
         this.degree = degree;
@@ -34,12 +35,12 @@ public class Teacher extends User {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public String getMajor() {
+
+    public int getMajor() {
         return major;
     }
 
-    public void setMajor(String major) {
+    public void setMajor(int major) {
         this.major = major;
     }
 
