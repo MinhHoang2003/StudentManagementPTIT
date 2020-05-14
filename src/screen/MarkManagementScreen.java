@@ -8,13 +8,7 @@ package screen;
 import control.MarkController;
 import data.model.Mark;
 import data.model.Utils;
-import data.util.MarkExportExcelUtil;
-import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
@@ -305,7 +299,7 @@ public class MarkManagementScreen extends javax.swing.JFrame implements MarkMana
     }
 
     @Override
-    public void refreshError(String message) {
+    public void showErrorMessage(String message) {
         System.err.println("Error: " + message);
     }
 

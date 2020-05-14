@@ -76,13 +76,34 @@ public class Utils {
         });
     }
 
-    public static boolean validateName(String name) {
+    public static boolean validateText(String name) {
         name = name.replaceAll("\\s+", " ").trim();
         Pattern p = Pattern.compile("[^A-Za-z0-9]");
         Matcher m = p.matcher(name);
         boolean b = m.find();
         if (b) {
-            System.err.println("On validate name: there is a special character in name ");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean validateNumber(String number) {
+        number = number.replaceAll("\\s+", " ").trim();
+        Pattern p = Pattern.compile("[^0-9]");
+        Matcher m = p.matcher(number);
+        boolean b = m.find();
+        if (b) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean validateName(String name) {
+        name = name.replaceAll("\\s+", " ").trim();
+        Pattern p = Pattern.compile("[^A-Za-z]");
+        Matcher m = p.matcher(name);
+        boolean b = m.find();
+        if (b) {
             return false;
         }
         return true;
@@ -93,10 +114,14 @@ public class Utils {
             System.err.println("On validate date: date is null");
             return false;
         }
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         simpleDateFormat.setLenient(false);
         try {
             Date date = simpleDateFormat.parse(strDate);
+            boolean check = date.before(new Date());
+            if (!check) {
+                return false;
+            }
         } catch (ParseException e) {
             System.err.println("On validate " + strDate + " is invalid date format");
             return false;

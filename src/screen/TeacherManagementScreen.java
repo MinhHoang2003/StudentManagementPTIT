@@ -12,6 +12,7 @@ import data.model.Teacher;
 import data.model.Utils;
 import java.util.List;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -314,12 +315,6 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
         String email = (String) model.getValueAt(index, 4);
         String major = (String) model.getValueAt(index, 5);
         String degree = (String) model.getValueAt(index, 6);
-
-        if (name.isEmpty() || address.isEmpty()
-                || email.isEmpty() || major.isEmpty() || degree.isEmpty()) {
-            //TODO : dialog here
-            return;
-        }
         editTextId.setText(id + "");
         editTextName.setText(name);
         editTextAddress.setText(address);
@@ -406,10 +401,12 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
         String email = editTextEmail.getText();
         String address = editTextAddress.getText();
         String degree = comboBoxDegree.getSelectedItem().toString();
-        if (name.isEmpty() || email.isEmpty() || address.isEmpty()) {
-            return null;
-        } else {
+        if (controller.validateNameField(name)
+                && controller.validateAddress(address)
+                && controller.validateDate(dateOfBirth)) {
             return new Teacher(major.getId(), degree, id, name, email, address, dateOfBirth);
+        } else {
+            return null;
         }
     }
 
@@ -431,7 +428,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
     }
 
     @Override
-    public void refreshError(String message) {
-        System.err.println("Error when refresh table " + message);
+    public void showErrorMessage(String message) {
+        JOptionPane.showMessageDialog(this, message);
     }
 }

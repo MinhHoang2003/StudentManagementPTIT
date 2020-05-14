@@ -12,6 +12,8 @@ import data.model.Course;
 import data.model.Mark;
 import data.model.Subject;
 import data.util.MarkExportExcelUtil;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -75,7 +77,7 @@ public class MarkController implements BaseController {
                     List<String> subjectsName = get();
                     view.showSubjectListOfTeacher(subjectsName);
                 } catch (InterruptedException | ExecutionException ex) {
-                    view.refreshError(ex.getMessage());
+                    view.showErrorMessage(ex.getMessage());
                 }
             }
         };
@@ -117,7 +119,7 @@ public class MarkController implements BaseController {
                     List<String> coursesId = get();
                     view.showCoursesOfTeacher(coursesId);
                 } catch (InterruptedException | ExecutionException ex) {
-                    view.refreshError(ex.getMessage());
+                    view.showErrorMessage(ex.getMessage());
                 }
             }
         };
@@ -156,5 +158,5 @@ public class MarkController implements BaseController {
             System.err.println(ex.getMessage());
         }
     }
-
+    
 }

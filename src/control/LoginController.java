@@ -78,7 +78,7 @@ public class LoginController {
         }
         String emailPreffix = email.replaceFirst(Utils.EMAIL_SUFFIX, "");
         System.out.println("login : " + emailPreffix);
-        if (!Utils.validateName(emailPreffix)) {
+        if (!Utils.validateText(emailPreffix)) {
             view.notifyErrorMessage("Email sai quy định : có chứa ký tự đặc biệt");
             return false;
         }
@@ -88,7 +88,7 @@ public class LoginController {
     public boolean validatePasswordField(String pass) {
         if (pass.isEmpty()) {
             view.notifyErrorMessage("Password không được để trống");
-        } else if (!Utils.validateName(pass)) {
+        } else if (!Utils.validateText(pass)) {
             view.notifyErrorMessage("Password sai quy định : có chứa ký tự đặc biệt");
             return false;
         }

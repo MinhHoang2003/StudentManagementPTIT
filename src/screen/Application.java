@@ -23,6 +23,7 @@ import data.dao.SubjectDAO;
 import data.dao.SubjectDAOImpl;
 import data.dao.TeacherDAO;
 import data.dao.TeacherDAOImpl;
+import data.model.AccountType;
 import data.model.Utils;
 
 /**
@@ -74,7 +75,11 @@ public class Application implements LoginScreenListener, HomeViewListener {
         }
         homeController = new HomeController(teacherDAO);
         homeController.show(true);
-        homeController.setUpUser(Utils.teacherCached.getName());
+        if (Utils.currentAccountType == AccountType.TEACHER) {
+            homeController.setUpUser(Utils.teacherCached.getName());
+        } else {
+            homeController.setUpUser("Admin");
+        }
         homeController.setHomeViewListener(this);
     }
 

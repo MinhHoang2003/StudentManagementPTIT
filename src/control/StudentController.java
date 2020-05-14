@@ -9,8 +9,10 @@ import data.dao.MajorDAOImpl;
 import data.dao.StudentDAO;
 import data.model.Major;
 import data.model.Student;
+import data.model.Utils;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
@@ -57,7 +59,7 @@ public class StudentController implements BaseController {
                     List<Student> teachers = get();
                     view.refreshTable(teachers);
                 } catch (InterruptedException | ExecutionException ex) {
-                    view.refreshError(ex.getMessage());
+                    view.showErrorMessage(ex.getMessage());
                 }
             }
         };
@@ -79,7 +81,7 @@ public class StudentController implements BaseController {
                         refreshTable();
                     }
                 } catch (InterruptedException | ExecutionException ex) {
-                    view.refreshError(ex.getMessage());
+                    view.showErrorMessage(ex.getMessage());
                 }
             }
         };
@@ -101,7 +103,7 @@ public class StudentController implements BaseController {
                         refreshTable();
                     }
                 } catch (InterruptedException | ExecutionException ex) {
-                    view.refreshError(ex.getMessage());
+                    view.showErrorMessage(ex.getMessage());
                 }
             }
         };
@@ -123,7 +125,7 @@ public class StudentController implements BaseController {
                         refreshTable();
                     }
                 } catch (InterruptedException | ExecutionException ex) {
-                    view.refreshError(ex.getMessage());
+                    view.showErrorMessage(ex.getMessage());
                 }
             }
         };
@@ -173,5 +175,64 @@ public class StudentController implements BaseController {
 
     public Major getMajor(String name) {
         return majorDAO.getMajorId(name);
+    }
+
+    public boolean validateNameField(String name) {
+        if (name == null || name.isEmpty()) {
+            view.showErrorMessage("Trường tên không được để trống");
+            return false;
+        } else if (!Utils.validateName(name)) {
+            view.showErrorMessage("Tên chứa ký tự đặc biệt");
+        }
+        return true;
+    }
+
+    public boolean validateAddress(String address) {
+        if (address == null || address.isEmpty()) {
+            view.showErrorMessage("Địa chỉ không được để trống");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateDate(String date) {
+        if (date == null || date.isEmpty()) {
+            view.showErrorMessage("Ngày sinh không được để trống");
+            return false;
+        } else if (!Utils.validateDate(date)) {
+            view.showErrorMessage("Ngày sinh không đúng định dạng");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateClassName(String className) {
+        if (className == null || className.isEmpty()) {
+            view.showErrorMessage("Tên lớp không được để trống");
+            return false;
+        } else if (!Utils.validateText(className)) {
+            view.showErrorMessage("Tên lớp có chứa ký tự đặc biệt");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateYear(String year) {
+        if (year == null || year.isEmpty()) {
+            view.showErrorMessage("Năm học không được để trống");
+            return false;
+        } else if (!Utils.validateNumber(year)) {
+            view.showErrorMessage("Năm học sai định dạng");
+            return false;
+        } else {
+            Calendar cal = Calendar.getInstance();
+            int yearParser = Integer.parseInt(year);
+            int yearNow = cal.get(Calendar.YEAR);
+            if (yearParser > yearNow) {
+                view.showErrorMessage("Năm nhập vào vượt quá thời điểm hiện tại");
+                return false;
+            }
+        }
+        return true;
     }
 }

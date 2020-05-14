@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -425,8 +426,8 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
     }
 
     @Override
-    public void refreshError(String message) {
-        System.err.println("On refresh table : " + message);
+    public void showErrorMessage(String message) {
+        JOptionPane.showMessageDialog(this, message);
     }
 
     private Student getData() throws SQLException, ClassNotFoundException {
@@ -437,18 +438,23 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
         String id = "";
         if (!idByString.isEmpty()) {
             id = idByString;
-        } else if (!yearStudyIn.isEmpty()) {
+        } else if (controller.validateYear(yearStudyIn)) {
             id = controller.generateNewStudentId(yearStudyIn, major);
+        } else {
+            return null;
         }
         String name = editTextName.getText();
         String dateOfBirth = editTextDateOfBirth.getText();
         String email = editTextEmail.getText();
         String address = editTextAddress.getText();
         String className = editTextClassName.getText();
-        if (name.isEmpty() || email.isEmpty() || address.isEmpty()) {
-            return null;
-        } else {
+        if (controller.validateNameField(name)
+                && controller.validateAddress(address)
+                && controller.validateDate(dateOfBirth)
+                && controller.validateClassName(className)) {
             return new Student(major.getId(), yearStudyIn, className, id, name, email, address, dateOfBirth);
+        } else {
+            return null;
         }
     }
 

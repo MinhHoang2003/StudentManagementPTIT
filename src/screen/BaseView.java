@@ -17,5 +17,5 @@ public interface BaseView<T> {
 
     void refreshTable(List<T> data);
 
-    void refreshError(String message);
+    void showErrorMessage(String message);
 }
