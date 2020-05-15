@@ -6,6 +6,7 @@
 package screen;
 
 import control.HomeController;
+import data.model.AccountType;
 import data.model.Utils;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -21,6 +22,7 @@ public class HomeView extends javax.swing.JFrame {
     public HomeView(HomeController homeController) {
         initComponents();
         this.homeController = homeController;
+        decentralizationUserType();
     }
 
     /**
@@ -35,10 +37,10 @@ public class HomeView extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jLabelUser = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabelTeacher = new javax.swing.JLabel();
+        jLabelStudent = new javax.swing.JLabel();
+        jLabelMark = new javax.swing.JLabel();
+        jLabelSetting = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -52,32 +54,32 @@ public class HomeView extends javax.swing.JFrame {
 
         jLabelUser.setText("Admin,");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/teacher.png"))); // NOI18N
-        jLabel3.setText("Quản lý thông tin giáo viên");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelTeacher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/teacher.png"))); // NOI18N
+        jLabelTeacher.setText("Quản lý thông tin giáo viên");
+        jLabelTeacher.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                jLabelTeacherMouseClicked(evt);
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/student.png"))); // NOI18N
-        jLabel4.setText("Quản lý thông tin sinh viên");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/student.png"))); // NOI18N
+        jLabelStudent.setText("Quản lý thông tin sinh viên");
+        jLabelStudent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                jLabelStudentMouseClicked(evt);
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/marking.png"))); // NOI18N
-        jLabel5.setText("Quản lý điểm sinh viên");
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelMark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/marking.png"))); // NOI18N
+        jLabelMark.setText("Quản lý điểm sinh viên");
+        jLabelMark.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                jLabelMarkMouseClicked(evt);
             }
         });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/performance.png"))); // NOI18N
-        jLabel6.setText("Cấu hình");
+        jLabelSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/performance.png"))); // NOI18N
+        jLabelSetting.setText("Cấu hình");
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -117,12 +119,12 @@ public class HomeView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(94, 94, 94)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabelTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelMark))
                         .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel4))))
+                            .addComponent(jLabelSetting)
+                            .addComponent(jLabelStudent))))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -134,12 +136,12 @@ public class HomeView extends javax.swing.JFrame {
                     .addComponent(jLabelUser))
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabelTeacher)
+                    .addComponent(jLabelStudent))
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabelMark)
+                    .addComponent(jLabelSetting))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
@@ -150,17 +152,17 @@ public class HomeView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void jLabelTeacherMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTeacherMouseClicked
         homeController.requestTeacherManagerScreen();
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_jLabelTeacherMouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void jLabelStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelStudentMouseClicked
         homeController.requestStudentManagerScreen();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_jLabelStudentMouseClicked
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    private void jLabelMarkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMarkMouseClicked
         homeController.requestMarkManagerScreen();
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_jLabelMarkMouseClicked
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         this.dispose();
@@ -169,10 +171,10 @@ public class HomeView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelMark;
+    private javax.swing.JLabel jLabelSetting;
+    private javax.swing.JLabel jLabelStudent;
+    private javax.swing.JLabel jLabelTeacher;
     private javax.swing.JLabel jLabelUser;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -194,6 +196,20 @@ public class HomeView extends javax.swing.JFrame {
             dispose();
         } else {
             setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        }
+    }
+
+    public final void decentralizationUserType() {
+        if (Utils.currentAccountType == AccountType.ADMIN) {
+            jLabelTeacher.setEnabled(true);
+            jLabelSetting.setEnabled(true);
+            jLabelStudent.setEnabled(true);
+            jLabelMark.setEnabled(true);
+        } else {
+            jLabelTeacher.setEnabled(false);
+            jLabelSetting.setEnabled(true);
+            jLabelStudent.setEnabled(false);
+            jLabelMark.setEnabled(true);
         }
     }
 }
