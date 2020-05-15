@@ -6,6 +6,8 @@
 package control;
 
 import data.dao.TeacherDAO;
+import java.awt.Frame;
+import java.awt.event.WindowAdapter;
 import screen.HomeView;
 import screen.HomeViewListener;
 
@@ -62,4 +64,13 @@ public class HomeController {
         view.setUpUserName(userName);
     }
 
+    public void showCloseConfirmMessage() {
+        view.showClosedConfirmMessage();
+    }
+
+    public void onHomeScreenClosed(WindowAdapter adapter) {
+        if (view instanceof Frame) {
+            ((Frame) view).addWindowListener(adapter);
+        }
+    }
 }

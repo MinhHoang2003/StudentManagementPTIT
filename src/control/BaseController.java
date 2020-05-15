@@ -5,6 +5,8 @@
  */
 package control;
 
+import java.awt.event.WindowAdapter;
+
 /**
  *
  * @author PhamMinhHoang
@@ -14,4 +16,8 @@ public interface BaseController {
     void show(boolean isVisible);
 
     void refreshTable();
+
+    void onWindowClosed(WindowAdapter windowAdapter);
+    
+    void showConfirmCloseMessage();
 }

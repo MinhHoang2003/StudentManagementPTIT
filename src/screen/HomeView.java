@@ -7,6 +7,8 @@ package screen;
 
 import control.HomeController;
 import data.model.Utils;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -183,4 +185,15 @@ public class HomeView extends javax.swing.JFrame {
         jLabelUser.setText(userName + ",");
     }
 
+    public void showClosedConfirmMessage() {
+        int confirmed = JOptionPane.showConfirmDialog(this,
+                "Bạn có chắc muốn thoát màn hình chính?", "Thoát",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirmed == JOptionPane.YES_OPTION) {
+            dispose();
+        } else {
+            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        }
+    }
 }

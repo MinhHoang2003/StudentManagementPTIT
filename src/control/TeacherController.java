@@ -10,11 +10,10 @@ import data.dao.TeacherDAO;
 import data.model.Major;
 import data.model.Teacher;
 import data.model.Utils;
-import java.util.ArrayList;
+import java.awt.Frame;
+import java.awt.event.WindowAdapter;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.SwingWorker;
 import screen.BaseView;
 import screen.TeacherManagementScreen;
@@ -161,6 +160,19 @@ public class TeacherController implements BaseController {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void onWindowClosed(WindowAdapter windowAdapter) {
+        if (view instanceof Frame) {
+            System.out.println("on listen window close");
+            ((Frame) view).addWindowListener(windowAdapter);
+        }
+    }
+
+    @Override
+    public void showConfirmCloseMessage() {
+        view.showConfirmCloseMessage();
     }
 
 }

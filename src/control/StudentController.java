@@ -10,6 +10,8 @@ import data.dao.StudentDAO;
 import data.model.Major;
 import data.model.Student;
 import data.model.Utils;
+import java.awt.Frame;
+import java.awt.event.WindowAdapter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -234,5 +236,17 @@ public class StudentController implements BaseController {
             }
         }
         return true;
+    }
+
+    @Override
+    public void onWindowClosed(WindowAdapter windowAdapter) {
+        if (view instanceof Frame) {
+            ((Frame) view).addWindowListener(windowAdapter);
+        }
+    }
+
+    @Override
+    public void showConfirmCloseMessage() {
+        view.showConfirmCloseMessage();
     }
 }

@@ -10,6 +10,8 @@ import data.model.Mark;
 import data.model.Utils;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -58,7 +60,7 @@ public class MarkManagementScreen extends javax.swing.JFrame implements MarkMana
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Môn học");
 
@@ -324,5 +326,18 @@ public class MarkManagementScreen extends javax.swing.JFrame implements MarkMana
     @Override
     public void showError(String message) {
         System.err.println("Error: " + message);
+    }
+
+    @Override
+    public void showConfirmCloseMessage() {
+        int confirmed = JOptionPane.showConfirmDialog(this,
+                "Bạn có chắc muốn thoát bảng điểm?", "Thoát",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirmed == JOptionPane.YES_OPTION) {
+            dispose();
+        } else {
+            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        }
     }
 }

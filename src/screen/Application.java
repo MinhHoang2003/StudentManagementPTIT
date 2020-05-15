@@ -25,6 +25,9 @@ import data.dao.TeacherDAO;
 import data.dao.TeacherDAOImpl;
 import data.model.AccountType;
 import data.model.Utils;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import sun.java2d.d3d.D3DRenderQueue;
 
 /**
  *
@@ -81,6 +84,17 @@ public class Application implements LoginScreenListener, HomeViewListener {
             homeController.setUpUser("Admin");
         }
         homeController.setHomeViewListener(this);
+        homeController.onHomeScreenClosed(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                homeController.showCloseConfirmMessage();
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                loginController.show(true);
+            }
+        });
     }
 
     @Override
@@ -90,6 +104,17 @@ public class Application implements LoginScreenListener, HomeViewListener {
         }
         homeController.show(false);
         teacherController.show(true);
+        teacherController.onWindowClosed(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                teacherController.showConfirmCloseMessage();
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                homeController.show(true);
+            }
+        });
     }
 
     @Override
@@ -99,6 +124,17 @@ public class Application implements LoginScreenListener, HomeViewListener {
         }
         homeController.show(false);
         studentController.show(true);
+        studentController.onWindowClosed(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                studentController.showConfirmCloseMessage();
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                homeController.show(true);
+            }
+        });
     }
 
     @Override
@@ -108,6 +144,17 @@ public class Application implements LoginScreenListener, HomeViewListener {
         }
         homeController.show(false);
         markController.show(true);
+        markController.onWindowClosed(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                markController.showConfirmCloseMessage();
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                homeController.show(true);
+            }
+        });
     }
 
     @Override

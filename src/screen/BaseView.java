@@ -10,6 +10,7 @@ import java.util.List;
 /**
  *
  * @author PhamMinhHoang
+ * @param <T>
  */
 public interface BaseView<T> {
 
@@ -18,4 +19,6 @@ public interface BaseView<T> {
     void refreshTable(List<T> data);
 
     void showErrorMessage(String message);
+
+    void showConfirmCloseMessage();
 }

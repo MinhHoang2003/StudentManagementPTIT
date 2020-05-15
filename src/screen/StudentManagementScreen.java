@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -68,7 +69,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
         jLabel10 = new javax.swing.JLabel();
         editTextClassName = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -455,6 +456,19 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
             return new Student(major.getId(), yearStudyIn, className, id, name, email, address, dateOfBirth);
         } else {
             return null;
+        }
+    }
+
+    @Override
+    public void showConfirmCloseMessage() {
+        int confirmed = JOptionPane.showConfirmDialog(this,
+                "Bạn có chắc muốn thoát bảng quản lý sinh viên?", "Thoát",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirmed == JOptionPane.YES_OPTION) {
+            dispose();
+        } else {
+            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         }
     }
 

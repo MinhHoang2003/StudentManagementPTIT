@@ -12,6 +12,7 @@ import data.model.Teacher;
 import data.model.Utils;
 import java.util.List;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -63,7 +64,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
         editTextDateOfBirth = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -430,5 +431,18 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
     @Override
     public void showErrorMessage(String message) {
         JOptionPane.showMessageDialog(this, message);
+    }
+
+    @Override
+    public void showConfirmCloseMessage() {
+        int confirmed = JOptionPane.showConfirmDialog(this,
+                "Bạn có chắc muốn thoát bảng quản lý giáo viên?", "Thoát",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirmed == JOptionPane.YES_OPTION) {
+            dispose();
+        } else {
+            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        }
     }
 }
