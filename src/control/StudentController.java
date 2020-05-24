@@ -185,6 +185,7 @@ public class StudentController implements BaseController {
             return false;
         } else if (!Utils.validateName(name)) {
             view.showErrorMessage("Tên chứa ký tự đặc biệt");
+            return false;
         }
         return true;
     }

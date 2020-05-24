@@ -21,13 +21,14 @@ import javax.swing.table.DefaultTableModel;
  * @author hoang
  */
 public class TeacherManagementScreen extends javax.swing.JFrame implements BaseView<Teacher> {
-
+    
     private ButtonState buttonState = ButtonState.NORMAL;
     private final DefaultTableModel model;
     private final TeacherController controller;
-
+    
     public TeacherManagementScreen(TeacherController teacherController) {
         initComponents();
+        changeButtonState(ButtonState.NORMAL);
         controller = teacherController;
         model = (DefaultTableModel) jTable1.getModel();
     }
@@ -296,6 +297,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
+        jTable1.clearSelection();
         changeButtonState(ButtonState.ADD);
     }//GEN-LAST:event_buttonAddActionPerformed
 
@@ -308,6 +310,8 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
     }//GEN-LAST:event_buttonRemoveActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        this.buttonEdit.setEnabled(true);
+        this.buttonRemove.setEnabled(true);
         int index = jTable1.getSelectedRow();
         int id = (int) model.getValueAt(index, 0);
         String name = (String) model.getValueAt(index, 1);
@@ -355,6 +359,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
         this.buttonState = state;
         switch (buttonState) {
             case ADD: {
+                clear();
                 this.buttonAdd.setEnabled(true);
                 this.buttonEdit.setEnabled(false);
                 this.buttonRemove.setEnabled(false);
@@ -380,20 +385,20 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
             }
             case NORMAL: {
                 this.buttonAdd.setEnabled(true);
-                this.buttonEdit.setEnabled(true);
-                this.buttonRemove.setEnabled(true);
+                this.buttonEdit.setEnabled(false);
+                this.buttonRemove.setEnabled(false);
                 this.buttonConfirm.setEnabled(false);
                 this.buttonCancel.setEnabled(false);
                 break;
             }
         }
     }
-
+    
     private Teacher getData() {
         String idByString = editTextId.getText();
         int id = 0;
         Major major = controller.getMajor(comboBoxMajor.getSelectedItem().toString());
-
+        
         if (!idByString.isEmpty()) {
             id = Integer.parseInt(idByString);
         }
@@ -410,7 +415,13 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
             return null;
         }
     }
-
+    
+    private void clear() {
+        editTextId.setText("");
+        editTextName.setText("");
+        //TODO
+    }
+    
     private void setSelectedValue(JComboBox comboBox, String value) {
         for (int i = 0; i < comboBox.getItemCount(); i++) {
             if (comboBox.getItemAt(i).toString().equalsIgnoreCase(value)) {
@@ -418,7 +429,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
             }
         }
     }
-
+    
     @Override
     public void refreshTable(List<Teacher> data) {
         model.setRowCount(0);
@@ -427,18 +438,18 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
             model.addRow(Utils.convertTeacherToObject(teacher));
         });
     }
-
+    
     @Override
     public void showErrorMessage(String message) {
         JOptionPane.showMessageDialog(this, message);
     }
-
+    
     @Override
     public void showConfirmCloseMessage() {
         int confirmed = JOptionPane.showConfirmDialog(this,
                 "Bạn có chắc muốn thoát bảng quản lý giáo viên?", "Thoát",
                 JOptionPane.YES_NO_OPTION);
-
+        
         if (confirmed == JOptionPane.YES_OPTION) {
             dispose();
         } else {

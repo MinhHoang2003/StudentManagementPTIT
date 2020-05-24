@@ -99,7 +99,7 @@ public class Utils {
     }
 
     public static boolean validateName(String name) {
-        name = name.replaceAll("\\s+", " ").trim();
+        name = name.replaceAll("\\s+", "").trim();
         Pattern p = Pattern.compile("[^A-Za-z]");
         Matcher m = p.matcher(name);
         boolean b = m.find();

@@ -31,6 +31,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
 
     public StudentManagementScreen(StudentController controller) {
         initComponents();
+        changeButtonState(ButtonState.NORMAL);
         model = (DefaultTableModel) jTable1.getModel();
         this.controller = controller;
     }
@@ -277,6 +278,8 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        this.buttonEdit.setEnabled(true);
+        this.buttonRemove.setEnabled(true);
         int index = jTable1.getSelectedRow();
         String studentId = (String) model.getValueAt(index, 0);
         String name = (String) model.getValueAt(index, 1);
@@ -341,6 +344,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
     }//GEN-LAST:event_buttonEditActionPerformed
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
+        jTable1.clearSelection();
         changeButtonState(ButtonState.ADD);
     }//GEN-LAST:event_buttonAddActionPerformed
 
@@ -375,6 +379,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
         this.buttonState = state;
         switch (buttonState) {
             case ADD: {
+                clear();
                 this.buttonAdd.setEnabled(true);
                 this.buttonEdit.setEnabled(false);
                 this.buttonRemove.setEnabled(false);
@@ -400,8 +405,8 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
             }
             case NORMAL: {
                 this.buttonAdd.setEnabled(true);
-                this.buttonEdit.setEnabled(true);
-                this.buttonRemove.setEnabled(true);
+                this.buttonEdit.setEnabled(false);
+                this.buttonRemove.setEnabled(false);
                 this.buttonConfirm.setEnabled(false);
                 this.buttonCancel.setEnabled(false);
                 break;
@@ -457,6 +462,12 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
         } else {
             return null;
         }
+    }
+
+    private void clear() {
+        editTextId.setText("");
+        editTextName.setText("");
+        //TODO
     }
 
     @Override
