@@ -50,7 +50,7 @@ public class LoginController {
                         onLoginComplete();
                     }
                 } catch (InterruptedException | ExecutionException ex) {
-                    System.err.println(ex.getMessage());
+                    view.notifyErrorMessage("Đăng nhập không thành công, email hoặc pass không đúng");
                 }
             }
         };
@@ -111,7 +111,7 @@ public class LoginController {
                         onLoginComplete();
                     }
                 } catch (InterruptedException | ExecutionException ex) {
-                    System.err.println(ex.getMessage());
+                    view.notifyErrorMessage("Đăng nhập không thành công, email hoặc pass không đúng");
                 }
             }
         };
