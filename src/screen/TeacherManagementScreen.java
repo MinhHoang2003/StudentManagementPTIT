@@ -21,11 +21,11 @@ import javax.swing.table.DefaultTableModel;
  * @author hoang
  */
 public class TeacherManagementScreen extends javax.swing.JFrame implements BaseView<Teacher> {
-    
+
     private ButtonState buttonState = ButtonState.NORMAL;
     private final DefaultTableModel model;
     private final TeacherController controller;
-    
+
     public TeacherManagementScreen(TeacherController teacherController) {
         initComponents();
         changeButtonState(ButtonState.NORMAL);
@@ -277,6 +277,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
             switch (this.buttonState) {
                 case ADD: {
                     controller.addNewTeacher(teacher);
+                    clear();
                     break;
                 }
                 case EDIT: {
@@ -393,12 +394,12 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
             }
         }
     }
-    
+
     private Teacher getData() {
         String idByString = editTextId.getText();
         int id = 0;
         Major major = controller.getMajor(comboBoxMajor.getSelectedItem().toString());
-        
+
         if (!idByString.isEmpty()) {
             id = Integer.parseInt(idByString);
         }
@@ -407,21 +408,31 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
         String email = editTextEmail.getText();
         String address = editTextAddress.getText();
         String degree = comboBoxDegree.getSelectedItem().toString();
-        if (controller.validateNameField(name)
-                && controller.validateAddress(address)
-                && controller.validateDate(dateOfBirth)) {
-            return new Teacher(major.getId(), degree, id, name, email, address, dateOfBirth);
-        } else {
+        if (!controller.validateNameField(name)) {
+            editTextName.requestFocus();
+            editTextName.selectAll();
             return null;
+        } else if (!controller.validateAddress(address)) {
+            editTextAddress.requestFocus();
+            editTextAddress.selectAll();
+            return null;
+        } else if (!controller.validateDate(dateOfBirth)) {
+            editTextDateOfBirth.requestFocus();
+            editTextDateOfBirth.selectAll();
+            return null;
+        } else {
+            return new Teacher(major.getId(), degree, id, name, email, address, dateOfBirth);
         }
     }
-    
+
     private void clear() {
         editTextId.setText("");
         editTextName.setText("");
-        //TODO
+        editTextDateOfBirth.setText("");
+        editTextEmail.setText("");
+        editTextAddress.setText("");
     }
-    
+
     private void setSelectedValue(JComboBox comboBox, String value) {
         for (int i = 0; i < comboBox.getItemCount(); i++) {
             if (comboBox.getItemAt(i).toString().equalsIgnoreCase(value)) {
@@ -429,7 +440,7 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
             }
         }
     }
-    
+
     @Override
     public void refreshTable(List<Teacher> data) {
         model.setRowCount(0);
@@ -438,18 +449,18 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
             model.addRow(Utils.convertTeacherToObject(teacher));
         });
     }
-    
+
     @Override
     public void showErrorMessage(String message) {
         JOptionPane.showMessageDialog(this, message);
     }
-    
+
     @Override
     public void showConfirmCloseMessage() {
         int confirmed = JOptionPane.showConfirmDialog(this,
                 "Bạn có chắc muốn thoát bảng quản lý giáo viên?", "Thoát",
                 JOptionPane.YES_NO_OPTION);
-        
+
         if (confirmed == JOptionPane.YES_OPTION) {
             dispose();
         } else {

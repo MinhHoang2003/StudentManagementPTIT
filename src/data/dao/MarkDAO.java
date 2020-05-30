@@ -16,4 +16,13 @@ import java.util.List;
 public interface MarkDAO {
 
     List<Mark> getMarksOfClass(int id) throws SQLException, ClassNotFoundException;
+
+    int getPassStudentCountByClass(int id) throws SQLException, ClassNotFoundException;
+
+    int getNotPassStudentCountByClass(int id) throws SQLException, ClassNotFoundException;
+
+    List<Mark> getPassStudentByClass(int id) throws SQLException, ClassNotFoundException;
+
+    List<Mark> getNotPassStudentByClass(int id) throws SQLException, ClassNotFoundException;
+
 }

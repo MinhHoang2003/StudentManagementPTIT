@@ -138,9 +138,8 @@ public class Application implements LoginScreenListener, HomeViewListener {
 
     @Override
     public void onRequestMarkManagerScreen() {
-        if (markController == null) {
-            markController = new MarkController(courseDAO, markDAO, subjectDAO);
-        }
+        markController = new MarkController(courseDAO, markDAO, subjectDAO);
+
         homeController.show(false);
         markController.show(true);
         markController.onWindowClosed(new WindowAdapter() {

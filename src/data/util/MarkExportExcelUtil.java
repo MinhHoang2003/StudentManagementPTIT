@@ -34,13 +34,11 @@ public class MarkExportExcelUtil {
         return style;
     }
 
-    public static void exportToExcelFile(String filePath) throws IOException, SQLException, ClassNotFoundException {
+    public static void exportToExcelFile(String filePath, List<Mark> marks) throws IOException, SQLException, ClassNotFoundException {
 
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("Bảng điểm sinh viên");
-
-        List<Mark> marks = MarkDAOImpl.getInstance().getMarksOfClass(1);
-
+        
         int rownum = 0;
         Cell cell = null;
         Row row = sheet.createRow(rownum);;

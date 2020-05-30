@@ -316,6 +316,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
             switch (this.buttonState) {
                 case ADD: {
                     controller.addNewStudent(student);
+                    clear();
                     break;
                 }
                 case EDIT: {
@@ -447,6 +448,8 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
         } else if (controller.validateYear(yearStudyIn)) {
             id = controller.generateNewStudentId(yearStudyIn, major);
         } else {
+            editTextYearStudyIn.requestFocus();
+            editTextYearStudyIn.selectAll();
             return null;
         }
         String name = editTextName.getText();
@@ -454,20 +457,34 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
         String email = editTextEmail.getText();
         String address = editTextAddress.getText();
         String className = editTextClassName.getText();
-        if (controller.validateNameField(name)
-                && controller.validateAddress(address)
-                && controller.validateDate(dateOfBirth)
-                && controller.validateClassName(className)) {
-            return new Student(major.getId(), yearStudyIn, className, id, name, email, address, dateOfBirth);
-        } else {
+        if (!controller.validateNameField(name)) {
+            editTextName.requestFocus();
+            editTextName.selectAll();
             return null;
+        } else if (!controller.validateAddress(address)) {
+            editTextAddress.requestFocus();
+            editTextAddress.selectAll();
+            return null;
+        } else if (!controller.validateDate(dateOfBirth)) {
+            editTextDateOfBirth.requestFocus();
+            editTextDateOfBirth.selectAll();
+            return null;
+        } else if (!controller.validateClassName(className)) {
+            editTextClassName.requestFocus();
+            editTextClassName.selectAll();
+            return null;
+        } else {
+            return new Student(major.getId(), yearStudyIn, className, id, name, email, address, dateOfBirth);
         }
     }
 
     private void clear() {
         editTextId.setText("");
         editTextName.setText("");
-        //TODO
+        editTextDateOfBirth.setText("");
+        editTextEmail.setText("");
+        editTextAddress.setText("");
+        editTextClassName.setText("");
     }
 
     @Override

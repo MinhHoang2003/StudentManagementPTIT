@@ -5,6 +5,7 @@
  */
 package control;
 
+import data.dao.AccountDAO;
 import data.dao.MajorDAOImpl;
 import data.dao.TeacherDAO;
 import data.model.Major;
@@ -139,6 +140,7 @@ public class TeacherController implements BaseController {
             return false;
         } else if (!Utils.validateName(name)) {
             view.showErrorMessage("Tên chứa ký tự đặc biệt");
+            return false;
         }
         return true;
     }

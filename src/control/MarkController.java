@@ -11,6 +11,7 @@ import data.dao.SubjectDAO;
 import data.model.Course;
 import data.model.Mark;
 import data.model.Subject;
+import data.model.Utils;
 import data.util.MarkExportExcelUtil;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
@@ -36,6 +37,7 @@ public class MarkController implements BaseController {
     private final SubjectDAO subjectDAO;
     private final MarkManagementView view;
     private List<Subject> cachedSubjects = null;
+    private final ArrayList<Mark> cachedMarks = new ArrayList<>();
 
     public MarkController(CourseDAO courseDAO, MarkDAO markDAO, SubjectDAO subjectDAO) {
         this.courseDAO = courseDAO;
@@ -53,6 +55,11 @@ public class MarkController implements BaseController {
         }
     }
 
+    public void setCachedForMarks(List<Mark> marks) {
+        this.cachedMarks.clear();
+        this.cachedMarks.addAll(marks);
+    }
+
     @Override
     public void refreshTable() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -62,7 +69,7 @@ public class MarkController implements BaseController {
         SwingWorker<List<String>, Void> worker = new SwingWorker<List<String>, Void>() {
             @Override
             protected List<String> doInBackground() throws Exception {
-                List<Subject> subjects = subjectDAO.getSubjectsByTeacher(1);
+                List<Subject> subjects = subjectDAO.getSubjectsByTeacher(Utils.teacherCached.getId());
                 cachedSubjects = subjects;
                 ArrayList<String> subjectsName = new ArrayList<>();
                 subjects.forEach((subject) -> {
@@ -147,12 +154,96 @@ public class MarkController implements BaseController {
         worker.execute();
     }
 
+    public void getMarkAfterSelectedPassStudent(int courseId) {
+        SwingWorker<List<Mark>, Void> worker = new SwingWorker<List<Mark>, Void>() {
+            @Override
+            protected List<Mark> doInBackground() throws Exception {
+                return markDAO.getPassStudentByClass(courseId);
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    List<Mark> marks = get();
+                    view.refreshTable(marks);
+                } catch (InterruptedException | ExecutionException ex) {
+                    Logger.getLogger(MarkController.class.getName()).log(Level.SEVERE, null, ex);
+                    view.showError(ex.getMessage());
+                }
+            }
+        };
+        worker.execute();
+    }
+
+    public void getMarkAfterSelectedNotPassStudent(int courseId) {
+        SwingWorker<List<Mark>, Void> worker = new SwingWorker<List<Mark>, Void>() {
+            @Override
+            protected List<Mark> doInBackground() throws Exception {
+                return markDAO.getNotPassStudentByClass(courseId);
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    List<Mark> marks = get();
+                    view.refreshTable(marks);
+                } catch (InterruptedException | ExecutionException ex) {
+                    Logger.getLogger(MarkController.class.getName()).log(Level.SEVERE, null, ex);
+                    view.showError(ex.getMessage());
+                }
+            }
+        };
+        worker.execute();
+    }
+
+    public void getNotPassStudentCount(int courseId) {
+        SwingWorker<Integer, Void> worker = new SwingWorker<Integer, Void>() {
+            @Override
+            protected Integer doInBackground() throws Exception {
+                return markDAO.getNotPassStudentCountByClass(courseId);
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    int num = get();
+                    view.showPassStudentCount(num);
+                } catch (InterruptedException | ExecutionException ex) {
+                    Logger.getLogger(MarkController.class.getName()).log(Level.SEVERE, null, ex);
+                    view.showError(ex.getMessage());
+                }
+            }
+        };
+        worker.execute();
+    }
+
+    public void getPassStudentCount(int courseId) {
+        SwingWorker<Integer, Void> worker = new SwingWorker<Integer, Void>() {
+            @Override
+            protected Integer doInBackground() throws Exception {
+                return markDAO.getPassStudentCountByClass(courseId);
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    int num = get();
+                    view.showPassStudentCount(num);
+                } catch (InterruptedException | ExecutionException ex) {
+                    Logger.getLogger(MarkController.class.getName()).log(Level.SEVERE, null, ex);
+                    view.showError(ex.getMessage());
+                }
+            }
+        };
+        worker.execute();
+    }
+
     public void exportMarkToExcelFile(String fileOutputPath) {
         if (!fileOutputPath.toLowerCase().endsWith(".xls")) {
             fileOutputPath = fileOutputPath + ".xls";
         }
         try {
-            MarkExportExcelUtil.exportToExcelFile(fileOutputPath);
+            MarkExportExcelUtil.exportToExcelFile(fileOutputPath, this.cachedMarks);
         } catch (IOException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(MarkManagementScreen.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println(ex.getMessage());

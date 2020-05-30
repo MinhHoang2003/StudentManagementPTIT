@@ -80,17 +80,24 @@ public class TeacherDAOImpl implements TeacherDAO {
     @Override
     public boolean addNewTeacher(Teacher teacher) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionUtil.getConnection();
-        String call = "CALL addTeacher(?,?,?,?,?,?)";
-        CallableStatement callableStatement = conn.prepareCall(call);
-        callableStatement.setString(TeacherTableUtil.COLUMN_NAME, teacher.getName());
-        callableStatement.setString(TeacherTableUtil.COLUMN_DATE_OF_BIRTH, teacher.getDateOfBirth());
-        callableStatement.setString(TeacherTableUtil.COLUMN_ADDRESS, teacher.getAddress());
-        callableStatement.setString(TeacherTableUtil.COLUMN_EMAIL, teacher.getEmail());
-        callableStatement.setInt(TeacherTableUtil.COLUMN_MAJOR_ID, teacher.getMajor());
-        callableStatement.setString(TeacherTableUtil.COLUMN_DEGREE, teacher.getDegree());
-        int id = callableStatement.executeUpdate();
+        String callAddNewStudemt = "CALL addTeacher(?,?,?,?,?,?)";
+        CallableStatement callableStatementAddNeww = conn.prepareCall(callAddNewStudemt);
+        callableStatementAddNeww.setString(TeacherTableUtil.COLUMN_NAME, teacher.getName());
+        callableStatementAddNeww.setString(TeacherTableUtil.COLUMN_DATE_OF_BIRTH, teacher.getDateOfBirth());
+        callableStatementAddNeww.setString(TeacherTableUtil.COLUMN_ADDRESS, teacher.getAddress());
+        callableStatementAddNeww.setString(TeacherTableUtil.COLUMN_EMAIL, teacher.getEmail());
+        callableStatementAddNeww.setInt(TeacherTableUtil.COLUMN_MAJOR_ID, teacher.getMajor());
+        callableStatementAddNeww.setString(TeacherTableUtil.COLUMN_DEGREE, teacher.getDegree());
+        int id = callableStatementAddNeww.executeUpdate();
         System.out.println("On add " + id);
-        return id > 0;
+        // create new account for teacher
+        String call = "CALL createTeacherAccount(?,?)";
+        CallableStatement callableStatement = conn.prepareCall(call);
+        callableStatement.setString(1, teacher.getEmail());
+        callableStatement.setString(2, teacher.getDateOfBirth().replaceAll("/", ""));
+        int result = callableStatement.executeUpdate();
+
+        return (id > 0) && (result > 0);
     }
 
     @Override

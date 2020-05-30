@@ -19,4 +19,8 @@ public interface MarkManagementView extends BaseView<Mark> {
     void showCoursesOfTeacher(List<String> courses);
 
     void showError(String message);
+
+    void showNotPassStudentCount(int num);
+
+    void showPassStudentCount(int num);
 }
