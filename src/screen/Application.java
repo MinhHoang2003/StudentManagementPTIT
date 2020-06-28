@@ -98,9 +98,9 @@ public class Application implements LoginScreenListener, HomeViewListener {
 
     @Override
     public void onRequestTeacherManagerScreen() {
-        if (teacherController == null) {
-            teacherController = new TeacherController(teacherDAO, majorDAOImpl);
-        }
+
+        teacherController = new TeacherController(teacherDAO, majorDAOImpl);
+
         homeController.show(false);
         teacherController.show(true);
         teacherController.onWindowClosed(new WindowAdapter() {
@@ -118,9 +118,8 @@ public class Application implements LoginScreenListener, HomeViewListener {
 
     @Override
     public void onRequestStudentManagerScreen() {
-        if (studentController == null) {
-            studentController = new StudentController(studentDAO, majorDAOImpl);
-        }
+        studentController = new StudentController(studentDAO, majorDAOImpl);
+
         homeController.show(false);
         studentController.show(true);
         studentController.onWindowClosed(new WindowAdapter() {

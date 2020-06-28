@@ -78,8 +78,7 @@ public class TeacherDAOImpl implements TeacherDAO {
     }
 
     @Override
-    public boolean addNewTeacher(Teacher teacher) throws SQLException, ClassNotFoundException {
-        Connection conn = ConnectionUtil.getConnection();
+    public boolean addNewTeacher(Connection conn, Teacher teacher) throws SQLException, ClassNotFoundException {
         String callAddNewStudemt = "CALL addTeacher(?,?,?,?,?,?)";
         CallableStatement callableStatementAddNeww = conn.prepareCall(callAddNewStudemt);
         callableStatementAddNeww.setString(TeacherTableUtil.COLUMN_NAME, teacher.getName());
@@ -89,6 +88,7 @@ public class TeacherDAOImpl implements TeacherDAO {
         callableStatementAddNeww.setInt(TeacherTableUtil.COLUMN_MAJOR_ID, teacher.getMajor());
         callableStatementAddNeww.setString(TeacherTableUtil.COLUMN_DEGREE, teacher.getDegree());
         int id = callableStatementAddNeww.executeUpdate();
+        callableStatementAddNeww.close();
         System.out.println("On add " + id);
         // create new account for teacher
         String call = "CALL createTeacherAccount(?,?)";
@@ -96,13 +96,12 @@ public class TeacherDAOImpl implements TeacherDAO {
         callableStatement.setString(1, teacher.getEmail());
         callableStatement.setString(2, teacher.getDateOfBirth().replaceAll("/", ""));
         int result = callableStatement.executeUpdate();
-
+        callableStatement.close();
         return (id > 0) && (result > 0);
     }
 
     @Override
-    public boolean updateTeacher(Teacher teacher) throws SQLException, ClassNotFoundException {
-        Connection conn = ConnectionUtil.getConnection();
+    public boolean updateTeacher(Connection conn, Teacher teacher) throws SQLException, ClassNotFoundException {
         String call = "CALL updateTeacher(?,?,?,?,?,?,?)";
         CallableStatement callableStatement = conn.prepareCall(call);
         callableStatement.setInt(TeacherTableUtil.COLUMN_ID, teacher.getId());
@@ -113,18 +112,17 @@ public class TeacherDAOImpl implements TeacherDAO {
         callableStatement.setInt(TeacherTableUtil.COLUMN_MAJOR_ID, teacher.getMajor());
         callableStatement.setString(TeacherTableUtil.COLUMN_DEGREE, teacher.getDegree());
         final boolean result = callableStatement.executeUpdate() > 0;
-        conn.close();
+        callableStatement.close();
         return result;
     }
 
     @Override
-    public boolean deleteTeacher(int id) throws SQLException, ClassNotFoundException {
-        Connection conn = ConnectionUtil.getConnection();
+    public boolean deleteTeacher(Connection conn, int id) throws SQLException, ClassNotFoundException {
         String call = "CALL removeTeacher(?)";
         CallableStatement callableStatement = conn.prepareCall(call);
         callableStatement.setInt(TeacherTableUtil.COLUMN_ID, id);
         final boolean result = callableStatement.executeUpdate() > 0;
-        conn.close();
+        callableStatement.close();
         return result;
     }
 

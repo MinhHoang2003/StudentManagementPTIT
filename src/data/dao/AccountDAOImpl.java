@@ -54,18 +54,6 @@ public class AccountDAOImpl implements AccountDAO {
     }
 
     @Override
-    public boolean createTeacherAccount(String email, String pass) throws SQLException, ClassNotFoundException {
-        Connection conn = ConnectionUtil.getConnection();
-        String call = "CALL createTeacherAccount(?,?)";
-        CallableStatement callableStatement = conn.prepareCall(call);
-        callableStatement.setString(1, email);
-        callableStatement.setString(2, pass);
-        int result = callableStatement.executeUpdate();
-        conn.close();
-        return result > 0;
-    }
-
-    @Override
     public boolean loginAdmin(String email, String pass) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionUtil.getConnection();
         boolean result = false;

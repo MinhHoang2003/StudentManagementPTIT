@@ -6,6 +6,7 @@
 package data.dao;
 
 import data.model.Student;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -17,14 +18,14 @@ public interface StudentDAO {
 
     ArrayList<Student> getStudents() throws SQLException, ClassNotFoundException;
 
-    Student getStudentById(int id) throws SQLException, ClassNotFoundException;
+    Student getStudentById(String id) throws SQLException, ClassNotFoundException;
 
-    boolean addNewStudent(Student teacher) throws SQLException, ClassNotFoundException;
+    boolean addNewStudent(Connection conn, Student teacher) throws SQLException, ClassNotFoundException;
 
-    boolean updateStudent(Student teacher) throws SQLException, ClassNotFoundException;
+    boolean updateStudent(Connection conn, Student teacher) throws SQLException, ClassNotFoundException;
 
-    boolean deleteStudent(String id) throws SQLException, ClassNotFoundException;
+    boolean deleteStudent(Connection conn, String id) throws SQLException, ClassNotFoundException;
 
-    int generateNewId(int maChuyenNganh) throws SQLException, ClassNotFoundException;
+    int generateNewId(Connection conn, int maChuyenNganh) throws SQLException, ClassNotFoundException;
 
 }

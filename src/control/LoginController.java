@@ -48,6 +48,8 @@ public class LoginController {
                         Utils.teacherCached = teacher;
                         Utils.currentAccountType = AccountType.TEACHER;
                         onLoginComplete();
+                    } else {
+                        view.notifyErrorMessage("Đăng nhập không thành công, email hoặc pass không đúng");
                     }
                 } catch (InterruptedException | ExecutionException ex) {
                     view.notifyErrorMessage("Đăng nhập không thành công, email hoặc pass không đúng");
@@ -109,6 +111,8 @@ public class LoginController {
                     if (result) {
                         Utils.currentAccountType = AccountType.ADMIN;
                         onLoginComplete();
+                    } else {
+                        view.notifyErrorMessage("Đăng nhập không thành công, email hoặc pass không đúng");
                     }
                 } catch (InterruptedException | ExecutionException ex) {
                     view.notifyErrorMessage("Đăng nhập không thành công, email hoặc pass không đúng");

@@ -6,6 +6,7 @@
 package data.dao;
 
 import data.model.Teacher;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -21,9 +22,9 @@ public interface TeacherDAO {
 
     Teacher getTeacherByEmail(String email) throws SQLException, ClassNotFoundException;
 
-    boolean addNewTeacher(Teacher teacher) throws SQLException, ClassNotFoundException;
+    boolean addNewTeacher(Connection conn, Teacher teacher) throws SQLException, ClassNotFoundException;
 
-    boolean updateTeacher(Teacher teacher) throws SQLException, ClassNotFoundException;
+    boolean updateTeacher(Connection conn, Teacher teacher) throws SQLException, ClassNotFoundException;
 
-    boolean deleteTeacher(int id) throws SQLException, ClassNotFoundException;
+    boolean deleteTeacher(Connection conn, int id) throws SQLException, ClassNotFoundException;
 }

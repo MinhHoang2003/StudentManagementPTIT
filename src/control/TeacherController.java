@@ -8,6 +8,7 @@ package control;
 import data.dao.AccountDAO;
 import data.dao.MajorDAOImpl;
 import data.dao.TeacherDAO;
+import data.model.ConnectionUtil;
 import data.model.Major;
 import data.model.Teacher;
 import data.model.Utils;
@@ -68,7 +69,7 @@ public class TeacherController implements BaseController {
         SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
             @Override
             protected Boolean doInBackground() throws Exception {
-                return teacherDAO.addNewTeacher(teacher);
+                return teacherDAO.addNewTeacher(ConnectionUtil.getConnection(), teacher);
             }
 
             @Override
@@ -90,7 +91,7 @@ public class TeacherController implements BaseController {
         SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
             @Override
             protected Boolean doInBackground() throws Exception {
-                return teacherDAO.updateTeacher(teacher);
+                return teacherDAO.updateTeacher(ConnectionUtil.getConnection(), teacher);
             }
 
             @Override
@@ -112,7 +113,7 @@ public class TeacherController implements BaseController {
         SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
             @Override
             protected Boolean doInBackground() throws Exception {
-                return teacherDAO.deleteTeacher(teacherId);
+                return teacherDAO.deleteTeacher(ConnectionUtil.getConnection(), teacherId);
             }
 
             @Override
@@ -159,6 +160,23 @@ public class TeacherController implements BaseController {
             return false;
         } else if (!Utils.validateDate(date)) {
             view.showErrorMessage("Ngày sinh không đúng định dạng");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateEmailForm(String email) {
+        if (email.isEmpty()) {
+            view.showErrorMessage("Email không được để trống");
+            return false;
+        } else if (!email.endsWith(Utils.EMAIL_SUFFIX)) {
+            view.showErrorMessage("Email sai tên miền, cần tên miền của học viện: @ptit.edu.vn");
+            return false;
+        }
+        String emailPreffix = email.replaceFirst(Utils.EMAIL_SUFFIX, "");
+        System.out.println("login : " + emailPreffix);
+        if (!Utils.validateText(emailPreffix)) {
+            view.showErrorMessage("Email sai quy định : có chứa ký tự đặc biệt");
             return false;
         }
         return true;

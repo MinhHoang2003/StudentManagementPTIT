@@ -7,11 +7,13 @@ package control;
 
 import data.dao.MajorDAOImpl;
 import data.dao.StudentDAO;
+import data.model.ConnectionUtil;
 import data.model.Major;
 import data.model.Student;
 import data.model.Utils;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -72,7 +74,8 @@ public class StudentController implements BaseController {
         SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
             @Override
             protected Boolean doInBackground() throws Exception {
-                return studentDAO.addNewStudent(student);
+                Connection conn = ConnectionUtil.getConnection();
+                return studentDAO.addNewStudent(conn, student);
             }
 
             @Override
@@ -94,7 +97,8 @@ public class StudentController implements BaseController {
         SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
             @Override
             protected Boolean doInBackground() throws Exception {
-                return studentDAO.updateStudent(student);
+                Connection conn = ConnectionUtil.getConnection();
+                return studentDAO.updateStudent(conn, student);
             }
 
             @Override
@@ -116,7 +120,8 @@ public class StudentController implements BaseController {
         SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
             @Override
             protected Boolean doInBackground() throws Exception {
-                return studentDAO.deleteStudent(id);
+                Connection conn = ConnectionUtil.getConnection();
+                return studentDAO.deleteStudent(conn, id);
             }
 
             @Override
@@ -135,7 +140,8 @@ public class StudentController implements BaseController {
     }
 
     public String generateNewStudentId(String getYearStudyIn, Major major) throws SQLException, ClassNotFoundException {
-        int idNum = studentDAO.generateNewId(major.getId());
+        Connection conn = ConnectionUtil.getConnection();
+        int idNum = studentDAO.generateNewId(conn, major.getId());
         String idFormat = String.format("%03d", ++idNum);
         System.out.println(getYearStudyIn);
         StringBuilder studentId = new StringBuilder();
@@ -235,6 +241,23 @@ public class StudentController implements BaseController {
                 view.showErrorMessage("Năm nhập vào vượt quá thời điểm hiện tại");
                 return false;
             }
+        }
+        return true;
+    }
+
+    public boolean validateEmailForm(String email) {
+        if (email.isEmpty()) {
+            view.showErrorMessage("Email không được để trống");
+            return false;
+        } else if (!email.endsWith(Utils.EMAIL_SUFFIX)) {
+            view.showErrorMessage("Email sai tên miền, cần tên miền của học viện: @ptit.edu.vn");
+            return false;
+        }
+        String emailPreffix = email.replaceFirst(Utils.EMAIL_SUFFIX, "");
+        System.out.println("login : " + emailPreffix);
+        if (!Utils.validateText(emailPreffix)) {
+            view.showErrorMessage("Email sai quy định : có chứa ký tự đặc biệt");
+            return false;
         }
         return true;
     }

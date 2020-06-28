@@ -204,10 +204,10 @@ public class HomeView extends javax.swing.JFrame {
             jLabelTeacher.setEnabled(true);
             jLabelSetting.setEnabled(true);
             jLabelStudent.setEnabled(true);
-            jLabelMark.setEnabled(true);
+            jLabelMark.setEnabled(false);
         } else {
             jLabelTeacher.setEnabled(false);
-            jLabelSetting.setEnabled(true);
+            jLabelSetting.setEnabled(false);
             jLabelStudent.setEnabled(false);
             jLabelMark.setEnabled(true);
         }

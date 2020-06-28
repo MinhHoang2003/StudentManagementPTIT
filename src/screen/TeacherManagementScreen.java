@@ -289,11 +289,13 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
                     break;
                 }
             }
+            clear();
+            changeButtonState(ButtonState.NORMAL);
         }
-        changeButtonState(ButtonState.NORMAL);
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
+        clear();
         changeButtonState(ButtonState.NORMAL);
     }//GEN-LAST:event_buttonCancelActionPerformed
 
@@ -419,6 +421,10 @@ public class TeacherManagementScreen extends javax.swing.JFrame implements BaseV
         } else if (!controller.validateDate(dateOfBirth)) {
             editTextDateOfBirth.requestFocus();
             editTextDateOfBirth.selectAll();
+            return null;
+        } else if (!controller.validateEmailForm(email)) {
+            editTextEmail.requestFocus();
+            editTextEmail.selectAll();
             return null;
         } else {
             return new Teacher(major.getId(), degree, id, name, email, address, dateOfBirth);

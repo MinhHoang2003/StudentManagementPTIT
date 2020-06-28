@@ -129,22 +129,4 @@ public class Utils {
         return true;
 
     }
-
-    public static String splitName(String name) {
-        name = name.replaceAll("\\s+", " ").trim();
-        Pattern p = Pattern.compile("[^A-Za-z0-9]");
-        Matcher m = p.matcher(name);
-        boolean b = m.find();
-        if (b) {
-            System.out.println("There is a special character in name ");
-            return null;
-        }
-        String mail = "";
-        String[] names = name.split(" ");
-        mail = mail + names[names.length - 1];
-        for (int i = 0; i < names.length - 1; i++) {
-            mail = mail + names[i].substring(0, 1);
-        }
-        return mail;
-    }
 }

@@ -6,6 +6,7 @@
 package data.dao;
 
 import data.model.Teacher;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
@@ -18,5 +19,4 @@ public interface AccountDAO {
 
     boolean loginAdmin(String email, String pass) throws SQLException, ClassNotFoundException;
 
-    boolean createTeacherAccount(String email, String pass) throws SQLException, ClassNotFoundException;
 }

@@ -56,12 +56,12 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public Student getStudentById(int id) throws SQLException, ClassNotFoundException {
+    public Student getStudentById(String id) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionUtil.getConnection();
         Student student = null;
         String call = "CALL getStudentById(?)";
         CallableStatement callableStatement = conn.prepareCall(call);
-        callableStatement.setInt(1, id);
+        callableStatement.setString(1, id);
         callableStatement.execute();
         ResultSet resultSet = callableStatement.getResultSet();
         while (resultSet.next()) {
@@ -81,8 +81,7 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public boolean addNewStudent(Student student) throws SQLException, ClassNotFoundException {
-        Connection conn = ConnectionUtil.getConnection();
+    public boolean addNewStudent(Connection conn, Student student) throws SQLException, ClassNotFoundException {
         String call = "CALL addStudent(?,?,?,?,?,?,?,?)";
         CallableStatement callableStatement = conn.prepareCall(call);
         callableStatement.setString(StudentTableUtil.COLUMN_ID, student.getId());
@@ -94,12 +93,12 @@ public class StudentDAOImpl implements StudentDAO {
         callableStatement.setInt(StudentTableUtil.COLUMN_MAJOR, student.getMajor());
         callableStatement.setString(StudentTableUtil.COLUMN_YEAR_STUDY_IN, student.getYearStudyIn());
         int id = callableStatement.executeUpdate();
+        callableStatement.close();
         return id > 0;
     }
 
     @Override
-    public boolean updateStudent(Student student) throws SQLException, ClassNotFoundException {
-        Connection conn = ConnectionUtil.getConnection();
+    public boolean updateStudent(Connection conn, Student student) throws SQLException, ClassNotFoundException {
         String call = "CALL updateStudent(?,?,?,?,?,?,?,?)";
         CallableStatement callableStatement = conn.prepareCall(call);
         callableStatement.setString(StudentTableUtil.COLUMN_ID, student.getId());
@@ -111,24 +110,22 @@ public class StudentDAOImpl implements StudentDAO {
         callableStatement.setInt(StudentTableUtil.COLUMN_MAJOR, student.getMajor());
         callableStatement.setString(StudentTableUtil.COLUMN_YEAR_STUDY_IN, student.getYearStudyIn());
         final boolean result = callableStatement.executeUpdate() > 0;
-        conn.close();
+        callableStatement.close();
         return result;
     }
 
     @Override
-    public boolean deleteStudent(String id) throws SQLException, ClassNotFoundException {
-        Connection conn = ConnectionUtil.getConnection();
+    public boolean deleteStudent(Connection conn, String id) throws SQLException, ClassNotFoundException {
         String call = "CALL removeStudent(?)";
         CallableStatement callableStatement = conn.prepareCall(call);
         callableStatement.setString(TeacherTableUtil.COLUMN_ID, id);
         final boolean result = callableStatement.executeUpdate() > 0;
-        conn.close();
+        callableStatement.close();
         return result;
     }
 
     @Override
-    public int generateNewId(int maChuyenNganh) throws SQLException, ClassNotFoundException {
-        Connection conn = ConnectionUtil.getConnection();
+    public int generateNewId(Connection conn, int maChuyenNganh) throws SQLException, ClassNotFoundException {
         String call = "CALL getStudentCount(?)";
         int id = 0;
         CallableStatement callableStatement = conn.prepareCall(call);
@@ -137,7 +134,6 @@ public class StudentDAOImpl implements StudentDAO {
         while (result.next()) {
             id = result.getInt("num");
         }
-        conn.close();
         return id;
     }
 }

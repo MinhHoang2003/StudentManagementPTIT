@@ -112,7 +112,7 @@ public class MarkController implements BaseController {
                 if (subjectId == -1) {
                     throw new Exception("Khong the tim thay mon hoc nao");
                 }
-                List<Course> courses = courseDAO.getCourseByTeacher(1, subjectId);
+                List<Course> courses = courseDAO.getCourseByTeacher(Utils.teacherCached.getId(), subjectId);
                 ArrayList<String> coursesId = new ArrayList<>();
                 courses.forEach((course) -> {
                     coursesId.add(course.getClassId() + " ");
@@ -207,7 +207,7 @@ public class MarkController implements BaseController {
             protected void done() {
                 try {
                     int num = get();
-                    view.showPassStudentCount(num);
+                    view.showNotPassStudentCount(num);
                 } catch (InterruptedException | ExecutionException ex) {
                     Logger.getLogger(MarkController.class.getName()).log(Level.SEVERE, null, ex);
                     view.showError(ex.getMessage());

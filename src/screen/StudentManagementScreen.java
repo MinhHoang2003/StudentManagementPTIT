@@ -316,7 +316,6 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
             switch (this.buttonState) {
                 case ADD: {
                     controller.addNewStudent(student);
-                    clear();
                     break;
                 }
                 case EDIT: {
@@ -328,11 +327,13 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
                     break;
                 }
             }
+            clear();
+            changeButtonState(ButtonState.NORMAL);
         }
-        changeButtonState(ButtonState.NORMAL);
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
+        clear();
         changeButtonState(ButtonState.NORMAL);
     }//GEN-LAST:event_buttonCancelActionPerformed
 
@@ -443,15 +444,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
         Major major = controller.getMajor(comboBoxMajor.getSelectedItem().toString());
 
         String id = "";
-        if (!idByString.isEmpty()) {
-            id = idByString;
-        } else if (controller.validateYear(yearStudyIn)) {
-            id = controller.generateNewStudentId(yearStudyIn, major);
-        } else {
-            editTextYearStudyIn.requestFocus();
-            editTextYearStudyIn.selectAll();
-            return null;
-        }
+
         String name = editTextName.getText();
         String dateOfBirth = editTextDateOfBirth.getText();
         String email = editTextEmail.getText();
@@ -473,7 +466,19 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
             editTextClassName.requestFocus();
             editTextClassName.selectAll();
             return null;
+        } else if (!controller.validateEmailForm(email)) {
+            editTextEmail.requestFocus();
+            editTextEmail.selectAll();
+            return null;
+        } else if (!idByString.isEmpty()) {
+            id = idByString;
+            return new Student(major.getId(), yearStudyIn, className, id, name, email, address, dateOfBirth);
+        } else if (!controller.validateYear(yearStudyIn)) {
+            editTextYearStudyIn.requestFocus();
+            editTextYearStudyIn.selectAll();
+            return null;
         } else {
+            id = controller.generateNewStudentId(yearStudyIn, major);
             return new Student(major.getId(), yearStudyIn, className, id, name, email, address, dateOfBirth);
         }
     }
@@ -485,6 +490,7 @@ public class StudentManagementScreen extends javax.swing.JFrame implements BaseV
         editTextEmail.setText("");
         editTextAddress.setText("");
         editTextClassName.setText("");
+        editTextYearStudyIn.setText("");
     }
 
     @Override
